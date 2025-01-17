@@ -1,6 +1,6 @@
 #include "../includes/cub.h"
 
-static int	check_name(char *str)
+static int	check_map_name(char *str)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ static int	check_name(char *str)
 	return (-1);
 }
 
-int	check_map(int argc, char **argv)
+int	check_map(t_data *data, int argc, char **argv)
 {
 	(void)argv;
 	if (argc != 2)
@@ -30,9 +30,14 @@ int	check_map(int argc, char **argv)
 		ft_putstr_fd("Error: Wrong number of arguments\n", 2);
 		return (-1);
 	}
-	if (check_name(argv[1]) == -1)
+	if (check_map_name(argv[1]) == -1)
 	{
 		ft_putstr_fd("Error: Wrong file extension\n", 2);
+		return (-1);
+	}
+	if (check_walls_texture(data, argv[1]) == -1)
+	{
+		ft_putstr_fd("Error: Wrong walls texture\n", 2);
 		return (-1);
 	}
 	return (0);

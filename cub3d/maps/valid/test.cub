@@ -1,8 +1,8 @@
-NO
-SO
-WE
-EA
+NO textura norte
+SO textura sul
+WE textura Oeste
+EA textura este
 
-F
-C
+F 0,0,200
+C 0,0,200
 

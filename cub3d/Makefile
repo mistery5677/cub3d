@@ -36,7 +36,7 @@ LIBS_DIR		=	libraries/
 LFT_PATH		=	$(addprefix $(LIBS_DIR), libft/)
 
 SRC				=	$(addprefix $(SRC_DIR), cub3D.c) \
-					$(addprefix $(SRC_DIR)$(PARSER_DIR), check_map.c) \
+					$(addprefix $(SRC_DIR)$(PARSER_DIR), check_map.c check_texture.c) \
 #					#$(addprefix $(SRC_DIR), malloc.c)
 
 OBJ_DIRS		=	$(OBJ_DIR) $(addprefix $(OBJ_DIR), $(PARSER_DIR)) \
