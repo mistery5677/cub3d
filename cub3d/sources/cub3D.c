@@ -4,10 +4,8 @@ int main(int argc, char **argv)
 {
     (void)argc;
     (void)argv;
-	if (argc != 2)
-	{
-		printf("deu erro\n");
-	}
+	if (check_map(argc, argv) == -1)
+		return (-1);
 	else
-		printf("Sem erros\n");
+		printf("Configuração certa\n");
 }
