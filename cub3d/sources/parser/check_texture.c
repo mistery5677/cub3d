@@ -43,15 +43,11 @@ static int	check_rgb(t_data *data)
 
 static int	verify_texture(t_data *data)
 {
-	// if (access(data->texture->no_texture, R_OK) != 0)
-	// 	return (-1);
-	// if (access(data->texture->so_texture, R_OK) != 0)
-	// 	return (-1);
-	// if (access(data->texture->ea_texture, R_OK) != 0)
-	// 	return (-1);
-	// if (access(data->texture->we_texture, R_OK) != 0)
-	// 	return (-1);
-	if (check_rgb(data) == -1)
+	if (!data->texture->so_texture
+		|| !data->texture->no_texture
+		|| !data->texture->no_texture
+		|| !data->texture->no_texture
+		|| check_rgb(data) == -1)
 		return (-1);
 	return (0);
 }

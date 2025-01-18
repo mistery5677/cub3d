@@ -31,6 +31,7 @@ int main(int argc, char **argv)
 	initialize_data(data);
 	if (check_map(data, argc, argv) == -1)
 		return (-1);
+	
 	printf("Value %s", data->texture->no_texture);
 	printf("Value %s", data->texture->so_texture);
 	printf("Value %s", data->texture->we_texture);
