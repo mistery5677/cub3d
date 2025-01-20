@@ -1,59 +1,50 @@
-.SILENT:
-MAKEFLAGS += --no-print-directory
+LIBFT_PATH		=	libraries/libft
+LIBFT			=	$(LIBFT_PATH)/libft.a
 
-GREEN   		= \033[0;32m
-TEAL    		= \033[1;36m
-RESET 			= \033[0m 
+MINILIBX_PATH	=	libraries/minilibx
+MINILIBX		=	$(MINILIBX_PATH)/libmlx.a
 
-NAME			= cub3D
+SOURCES_FILES	=	parser/check_map.c parser/check_texture.c cub3D.c
 
-CC				= cc
+SOURCES_DIR		=	sources
 
-CFLAGS			= -Wall -Wextra -Werror -gdwarf-4
+HEADER			=	includes/cub.h
 
-RM				= rm -rf
+SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
 
-INC_DIR			= includes/
+OBJECTS			=	$(SOURCES:.c=.o)
 
-SRC_DIR			= sources/
+NAME			=	cub3D
 
-OBJ_DIR			= objs/
+CC				=	cc
+RM				=	rm -rf
 
-LIBS_DIR		= libraries/
+CFLAGS			=	-Wall -Wextra -Werror
+MLXFLAGS		=	-L. -lXext -L. -lX11
 
-LFT_PATH		= $(addprefix $(LIBS_DIR), libft/)
+.c.o:
+				$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-MINILIBX_DIR	= $(addprefix $(LIBS_DIR), minilibx/)
+all:			$(NAME)
 
-SRC				= $(addprefix $(SRC_DIR), cub3D.c) \
-				  $(addprefix $(SRC_DIR)parser/, check_map.c check_texture.c)
+$(NAME):		$(LIBFT) $(MINILIBX) $(OBJECTS) $(HEADER)
+				$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $(NAME)
 
-OBJ				= $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+$(LIBFT):
+				$(MAKE) -C $(LIBFT_PATH)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@ -I $(INC_DIR) -L$(LFT_PATH) -lft -L$(MINILIBX_DIR) -lX11 -lXext -lm
-	printf '$(GREEN)$(NAME) compiled successfully!\n $(RESET)'
-
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
-	printf "$(TEAL)Compiling $(NAME) objects... %-33.33s\n$(RESET)" $(notdir $@)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR) 
-
-$(OBJ_DIR):
-	mkdir -p $@
-
-all: $(NAME)
-
-dependencies:
-	make -C $(LFT_PATH)
+$(MINILIBX):
+				$(MAKE) -C $(MINILIBX_PATH)
 
 clean:
-	$(RM) $(OBJ_DIR)
-	make clean -C $(LFT_PATH)
+				$(MAKE) -C $(LIBFT_PATH) clean
+				$(MAKE) -C $(MINILIBX_PATH) clean
+				$(RM) $(OBJECTS) $(OBJECTS_BONUS)
 
-fclean: clean
-	$(RM) $(NAME)
-	make fclean -C $(LFT_PATH)
+fclean:			clean
+				$(MAKE) -C $(LIBFT_PATH) fclean
+				$(RM) $(NAME) $(NAME_BONUS)
 
-re: fclean all
+re:				fclean all
 
-.PHONY: all clean fclean re
+.PHONY:			all clean fclean re libft minilibx bonus

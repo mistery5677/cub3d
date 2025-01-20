@@ -1,4 +1,4 @@
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 static void set_wall_texture(t_data *data, char *line)
 {

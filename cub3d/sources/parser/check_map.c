@@ -1,4 +1,4 @@
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 static int	check_map_name(char *str)
 {
