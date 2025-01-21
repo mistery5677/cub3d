@@ -103,6 +103,7 @@ int					organize_buffer(char *buffer);
 int					ft_strcmp(char *s1, char *s2);
 char				*ft_strstr(const char *str, const char *sub_str);
 void				*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+void				free_array(char **array);
 
 // List / New functions from push_swap
 // void				print_data_a_front(t_data *data);
