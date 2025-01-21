@@ -52,6 +52,31 @@ static int	verify_texture(t_data *data)
 	return (0);
 }
 
+static int	write_map(t_data *data, int fd)
+{
+	char	*str_matrix;
+	char	*backup;
+	char	*line;
+
+	data->map->matrix = NULL;
+	backup = ft_strdup("");
+	line = get_next_line(fd); // Skips the line 8
+	while (line)
+	{
+		str_matrix = ft_strdup(backup);
+		free(backup);
+		backup = ft_strjoin(str_matrix, line);
+		free(str_matrix);
+		free(line);
+		line = get_next_line(fd);
+	}
+	data->map->matrix = ft_split(backup, '\n');
+	free(backup);
+	// for (int i = 0; data->map->matrix[i]; i++)
+	// 	printf("data->map->matrix[%d] %s\n", i, data->map->matrix[i]);
+	return (0);
+}
+
 int	check_walls_texture(t_data *data, char *file)
 {
 	char	*line;
@@ -69,6 +94,8 @@ int	check_walls_texture(t_data *data, char *file)
 		line = get_next_line(fd);
 		i++;
 	}
+	free(line);
+	write_map(data, fd);
 	close(fd);
 	if (verify_texture(data) == -1)
 		return (-1);

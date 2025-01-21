@@ -2,6 +2,12 @@
 
 void	initialize_data(t_data *data)
 {
+	data->map = malloc(sizeof(t_map));
+	if (!data->map)
+	{
+		ft_putstr_fd("Error allocating memory\n", 2);
+		exit(127);
+	}
 	data->texture = malloc(sizeof(t_texture));
 	if (!data->texture)
 	{
@@ -31,11 +37,7 @@ int main(int argc, char **argv)
 	initialize_data(data);
 	if (check_map(data, argc, argv) == -1)
 		return (-1);
-	
-	printf("Value %s", data->texture->no_texture);
-	printf("Value %s", data->texture->so_texture);
-	printf("Value %s", data->texture->we_texture);
-	printf("Value %s", data->texture->ea_texture);
-	printf("Value %s", data->texture->f_texture);
-	printf("Value %s", data->texture->c_texture);
+	create_window(data);
+	gameplay(data);
+	mlx_loop(data->mlx);
 }

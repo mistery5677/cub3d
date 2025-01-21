@@ -4,7 +4,11 @@ LIBFT			=	$(LIBFT_PATH)/libft.a
 MINILIBX_PATH	=	libraries/minilibx
 MINILIBX		=	$(MINILIBX_PATH)/libmlx.a
 
-SOURCES_FILES	=	parser/check_map.c parser/check_texture.c cub3D.c
+SOURCES_FILES	=	cub3D.c \
+					errors/free_all.c \
+					initialize/init.c \
+					gameplay/gameplay.c \
+					parser/check_map.c parser/check_texture.c \
 
 SOURCES_DIR		=	sources
 

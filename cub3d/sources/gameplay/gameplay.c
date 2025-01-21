@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   gameplay.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/21 16:05:35 by mistery576       ###   ########.fr       */
+/*   Created: 2025/01/21 16:16:32 by mistery576        #+#    #+#             */
+/*   Updated: 2025/01/21 17:16:22 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-int	create_window(t_data *data)
+static int	key_press(int key_pressed, t_data *data)
+{
+	(void) data;
+	printf("key_pressed %d\n", key_pressed);
+	return (0);
+}
+
+void gameplay(t_data *data)
 {
 	(void)data;
-	data->mlx = mlx_init();
-	//mlx_get_screen_size
-	data->win = mlx_new_window(data->mlx, 1000, 1000, "Cub3D");
-	return (0);
+	mlx_hook(data->win, KeyPress, KeyPressMask, key_press, data);
 }
