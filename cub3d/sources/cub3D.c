@@ -14,6 +14,9 @@ void	initialize_data(t_data *data)
 		ft_putstr_fd("Error allocating memory\n", 2);
 		exit(127);
 	}
+	data->win = NULL;
+	data->mlx = NULL;
+	data->player = 0;
 	data->texture->no_texture = NULL;
     data->texture->so_texture = NULL;
     data->texture->we_texture = NULL;
@@ -36,7 +39,10 @@ int main(int argc, char **argv)
 	}
 	initialize_data(data);
 	if (check_map(data, argc, argv) == -1)
+	{
+		free_all(data);
 		return (-1);
+	}
 	create_window(data);
 	gameplay(data);
 	mlx_loop(data->mlx);

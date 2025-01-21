@@ -22,6 +22,25 @@ static int	check_map_name(char *str)
 	return (-1);
 }
 
+int	verify_matrix(t_data *data)
+{
+	int	i;
+
+	if (check_up_down(data->map->matrix[0]) == -1)
+		return (-1);
+	i = 1;
+	while (data->map->matrix[i + 1])
+	{
+		if (check_line_limit(data->map->matrix[i]) == -1
+			|| check_line(data, data->map->matrix[i]) == -1 )
+			return (-1);
+		i++;
+	}
+	if (check_up_down(data->map->matrix[i]) == -1)
+		return (-1);
+	return (0);
+}
+
 int	check_map(t_data *data, int argc, char **argv)
 {
 	(void)argv;
@@ -38,6 +57,11 @@ int	check_map(t_data *data, int argc, char **argv)
 	if (check_walls_texture(data, argv[1]) == -1)
 	{
 		ft_putstr_fd("Error: Wrong walls texture\n", 2);
+		return (-1);
+	}
+	if (verify_matrix(data) == -1)
+	{
+		ft_putstr_fd("Error: Invalid map\n", 2);
 		return (-1);
 	}
 	return (0);
