@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:32 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/21 17:16:22 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/21 18:35:14 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 static int	key_press(int key_pressed, t_data *data)
 {
-	(void) data;
-	printf("key_pressed %d\n", key_pressed);
+	if (key_pressed == ESC)
+	{
+		//printf("entrou\n");
+		free_all(data);
+	}
 	return (0);
 }
 
