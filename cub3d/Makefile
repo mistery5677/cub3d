@@ -8,6 +8,8 @@ SOURCES_FILES	=	cub3D.c \
 					errors/free_all.c \
 					initialize/init.c \
 					gameplay/gameplay.c \
+					render/render.c \
+					debug_function/debug.c \
 					parser/check_map.c parser/check_texture.c parser/verify_matrix_utils.c\
 
 SOURCES_DIR		=	sources
@@ -32,7 +34,8 @@ MLXFLAGS		=	-L. -lXext -L. -lX11
 all:			$(NAME)
 
 $(NAME):		$(LIBFT) $(MINILIBX) $(OBJECTS) $(HEADER)
-				$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $(NAME)
+				$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $(NAME) -lm 
+				#-lm.   Para compilar com a biblioteca math.h
 
 $(LIBFT):
 				$(MAKE) -C $(LIBFT_PATH)

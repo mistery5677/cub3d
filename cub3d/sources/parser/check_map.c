@@ -32,11 +32,13 @@ int	verify_matrix(t_data *data)
 	while (data->map->matrix[i + 1])
 	{
 		if (check_line_limit(data->map->matrix[i]) == -1
-			|| check_line(data, data->map->matrix[i]) == -1 )
+			|| check_line(data, data->map->matrix[i], i) == -1 )
 			return (-1);
 		i++;
 	}
 	if (check_up_down(data->map->matrix[i]) == -1)
+		return (-1);
+	if (data->player->player != 1)
 		return (-1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:46:23 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/21 23:18:17 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/22 14:09:29 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	free_all(t_data *data)
 	if (data->win)
 		mlx_destroy_display(data->mlx);
 	free(data->mlx);
+	free(data->player);
 	free(data);
 	exit(0);
 }
