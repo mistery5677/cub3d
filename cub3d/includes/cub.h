@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/22 22:49:44 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/23 18:47:27 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # define FLOOR '0'
 # define WIDTH 1000
 # define HEIGHT 1000
+# define A 97
+# define S 115
+# define D 100
+# define W 119
 
 typedef struct s_texture
 {
@@ -51,6 +55,17 @@ typedef struct s_player
 	int			player;
 }	t_player;
 
+/* DEBUG */
+typedef struct s_image {
+	void *mlx;
+	void *win;
+    void    *img;
+    char    *addr;
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+}   t_image;
+
 typedef struct s_data
 {
 	void        *mlx;
@@ -59,6 +74,7 @@ typedef struct s_data
 	t_map       *map;
 	t_player	*player;
 	t_texture   *texture;
+	t_image		*image;
 }   t_data;
 
 /***  FONT name: ANSI Shadow
