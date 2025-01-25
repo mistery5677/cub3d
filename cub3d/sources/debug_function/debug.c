@@ -167,28 +167,62 @@ bool touch(float px, float py, t_data *data)
     return false;
 }
 
-int draw_loop(t_data *data)
+void draw_ray(t_data *data, float start_x, int i)
 {
-    float ray_x;
-    float ray_y;
     float cos_angle;
     float sin_angle;
+    float ray_x;
+    float ray_y;
 
+    (void)i;
     ray_x = data->player->x_pst;
     ray_y = data->player->y_pst;
-    cos_angle = cos(data->player->angle);
-    sin_angle = sin(data->player->angle);
+    sin_angle = sin(start_x);
+    cos_angle = cos(start_x);
+    while (!touch(ray_x, ray_y, data))
+    {
+        put_pixel(ray_x, ray_y, 0xFF0000, data->image); 
+        ray_x += cos_angle;
+        ray_y += sin_angle; 
+    }
+}
+
+int draw_loop(t_data *data)
+{
+    // float ray_x;
+    // float ray_y;
+    // float cos_angle;
+    // float sin_angle;
+
+    // ray_x = data->player->x_pst;
+    // ray_y = data->player->y_pst;
+    // cos_angle = cos(data->player->angle);
+    // sin_angle = sin(data->player->angle);
     move_player(data);
     clear_image(data->image);
     draw_map(data);
     draw_square(data->player->x_pst, data->player->y_pst, 5, 0x00FF00, data);
 
-    while (!touch(ray_x, ray_y, data))
+    float fraction;
+    float start_x;
+    int i;
+
+    i = 0;
+    fraction = PI / 3 / WIDTH;
+    start_x = data->player->angle - PI / 6;
+    while (i < WIDTH)
     {
-        put_pixel(ray_x, ray_y, 0xFF0000, data->image);
-        ray_x += cos_angle;
-        ray_y += sin_angle;
+        draw_ray(data, start_x, i);
+        start_x += fraction;
+        i++;
     }
+    // DRAWS A SINGLE LINE
+    // while (!touch(ray_x, ray_y, data))
+    // {
+    //     put_pixel(ray_x, ray_y, 0xFF0000, data->image);
+    //     ray_x += cos_angle;
+    //     ray_y += sin_angle;
+    // }
     mlx_put_image_to_window(data->image->mlx, data->image->win, data->image->img, 0, 0);
     return (0);
 }
