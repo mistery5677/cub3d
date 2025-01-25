@@ -128,10 +128,11 @@ void move_player(t_data *data)
         data->player->angle -= angle_speed;
     if (data->player->right_rotate)
         data->player->angle += angle_speed;
+
     if (data->player->angle > 2 * PI)
-        data->player->angle = 0;
+        data->player->angle -= 2 * PI;
     if (data->player->angle < 0)
-        data->player->angle = 2 * PI;
+        data->player->angle += 2 * PI;
 
     if (data->player->key_up)
     {
@@ -145,13 +146,13 @@ void move_player(t_data *data)
     }
     if (data->player->key_left)
     {
-        data->player->x_pst += cos_angle *speed;
-        data->player->y_pst -= sin_angle *speed;
+        data->player->x_pst += sin_angle * speed;
+        data->player->y_pst -= cos_angle * speed;
     }
     if (data->player->key_right)
     {
-        data->player->x_pst -= cos_angle *speed;
-        data->player->y_pst += sin_angle *speed;
+        data->player->x_pst -= sin_angle * speed;
+        data->player->y_pst += cos_angle * speed;
     }
 }
 
@@ -165,6 +166,11 @@ bool touch(float px, float py, t_data *data)
     if (data->map->matrix[y][x] == '1')
         return true;
     return false;
+}
+
+float calculate_distance(float x, float y)
+{
+    return sqrt(x * x + y * y);
 }
 
 void draw_ray(t_data *data, float start_x, int i)
@@ -181,9 +187,25 @@ void draw_ray(t_data *data, float start_x, int i)
     cos_angle = cos(start_x);
     while (!touch(ray_x, ray_y, data))
     {
-        put_pixel(ray_x, ray_y, 0xFF0000, data->image); 
+        //put_pixel(ray_x, ray_y, 0xFF0000, data->image); // Draws the ray
         ray_x += cos_angle;
         ray_y += sin_angle; 
+    }
+
+    //Calculate distance
+    float distance;
+    float wall_height;
+    int start_y;
+    int end;
+
+    distance = calculate_distance(ray_x - data->player->x_pst, ray_y - data->player->y_pst);
+    wall_height = (BLOCK / distance) * (WIDTH / 2);
+    start_y = (HEIGHT - wall_height) / 2;
+    end = start_y + wall_height;
+    while (start_y < end)
+    {
+        put_pixel(i, start_y, 0x00FF00, data->image);
+        start_y++;
     }
 }
 
@@ -200,8 +222,8 @@ int draw_loop(t_data *data)
     // sin_angle = sin(data->player->angle);
     move_player(data);
     clear_image(data->image);
-    draw_map(data);
-    draw_square(data->player->x_pst, data->player->y_pst, 5, 0x00FF00, data);
+    //draw_map(data);
+    //draw_square(data->player->x_pst, data->player->y_pst, 5, 0x00FF00, data);
 
     float fraction;
     float start_x;

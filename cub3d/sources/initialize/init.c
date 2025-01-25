@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/24 16:56:09 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/25 19:25:04 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	initialize_player(t_data *data)
 	data->player->player = 0;
 	data->player->angle = 0.0;
 }
-
+ 
 static void	initialize_textures(t_data *data)
 {
 	data->texture->no_texture = NULL;
