@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/24 20:49:31 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/25 00:18:07 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ typedef struct s_player
 	float		right_rotate;
 	float		angle;
 	int			player;
+	bool		key_up;
+	bool		key_down;
+	bool		key_left;
+	bool		key_right;
 
 	
 }	t_player;

@@ -16,23 +16,6 @@ void put_pixel(int x, int y, int color, t_image *image)
 
 }
 
-void draw_square(int x, int y, int size, int color, t_image *image)
-{
-    int i, j;
-
-    i = 0;
-    while (i < size)
-    {
-        j = 0;
-        while (j < size)
-        {
-            put_pixel(x + i, y + j, color, image);
-            j++;
-        }
-        i++;
-    }
-}
-
 void clear_image(t_image *image)
 {
     int i;
@@ -52,25 +35,16 @@ void clear_image(t_image *image)
     }
 }
 
-void draw_map(t_data *data)
+void draw_square (int x, int y, int size, int color, t_data *data)
 {
-    int y;
-    int x;
-
-    x = 0;
-    while (data->map->matrix[x])
-    {
-        y = 0;
-        while (data->map->matrix[x][y])
-        {
-            if (data->map->matrix[x][y] == WALL)
-                draw_square(y * 40, x * 40, 40, 0x00FF00, data->image);
-            if (data->map->matrix[x][y] == 'N')
-                draw_square(data->player->y_pst * 40, data->player->x_pst * 40, 20, 0xFF0000, data->image);
-            y++;
-        }
-        x++;
-    }
+    for (int i = 0; i < size; i++)
+        put_pixel(x + i, y, color, data->image);
+    for (int i = 0; i < size; i++)
+        put_pixel(x, y + i, color, data->image);
+    for (int i = 0; i < size; i++)
+        put_pixel(x + size, y + i, color, data->image);
+    for (int i = 0; i < size; i++)
+        put_pixel(x + i, y + size, color, data->image);    
 }
 
 void init_debug(t_image *image)
@@ -79,69 +53,76 @@ void init_debug(t_image *image)
     image->win = mlx_new_window(image->mlx, WIDTH, HEIGHT, "Debug");
     image->img = mlx_new_image(image->mlx, WIDTH, HEIGHT);
     image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel, &image->line_length, &image->endian);
+    mlx_put_image_to_window(image->mlx, image->win, image->img, 0, 0);
 }
 
-int move_player(int key_pressed, t_data *data)
+int key_press(int key_pressed, t_data *data)
 {
-    float angle_speed;
-    float cos_angle;
-    float sin_angle;
-
-    cos_angle = cos(data->player->angle);
-    sin_angle = sin(data->player->angle);
-    angle_speed = 0.1;
-    (void)cos_angle;
-    (void)sin_angle;
-    printf("Key_pressed %d\n", key_pressed);
-    if (key_pressed == LEFT)
-    {
-        data->player->angle -= angle_speed;
-    }
-    if (key_pressed == RIGHT)
-    {
-        data->player->angle += angle_speed;
-    }
-    if (data->player->angle > 2 * PI)
-    {
-        data->player->angle = 0;
-    }
-    if (data->player->angle < 0)
-    {
-        data->player->angle = 2 * PI;
-    }
     if (key_pressed == W)
-    {
-        data->player->x_pst -= 0.1;
-    }
+        data->player->key_up = true;
     if (key_pressed == S)
-    {
-        data->player->x_pst += 0.1;
-    }
-    if (key_pressed == A)
-    {
-        data->player->y_pst -= 0.1;
-    }
+        data->player->key_down = true;
     if (key_pressed == D)
-    {
-        data->player->y_pst += 0.1;
-    }
-    printf("data y %f\n", data->player->y_pst);
-    clear_image(data->image);
-    draw_map(data);
-    mlx_put_image_to_window(data->image->mlx, data->image->win, data->image->img, 0, 0);
+        data->player->key_right = true;
+    if (key_pressed == A)
+        data->player->key_left = true;
     return (0);
 }
 
+int key_release(int key_pressed, t_data *data)
+{
+    if (key_pressed == W)
+        data->player->key_up = false;
+    if (key_pressed == S)
+        data->player->key_down = false;
+    if (key_pressed == D)
+        data->player->key_right = false;
+    if (key_pressed == A)
+        data->player->key_left = false;
+    return (0);
+}
+
+void move_player(t_data *data)
+{
+    float speed = 5;
+    if (data->player->key_up)
+        data->player->y_pst -= speed;
+    if (data->player->key_down)
+        data->player->y_pst += speed;
+    if (data->player->key_left)
+        data->player->x_pst -= speed; 
+    if (data->player->key_right)
+        data->player->x_pst += speed;
+}
+
+int draw_loop(t_data *data)
+{
+    move_player(data);
+    clear_image(data->image);
+    draw_square(data->player->x_pst, data->player->y_pst, 5, 0x00FF00, data);
+    mlx_put_image_to_window(data->image->mlx, data->image->win, data->image->img, 0, 0);
+    return (0);
+}
 
 void debug_window(t_data *data)
 {
     t_image *image;
 
     image = malloc(sizeof(t_image));
+
+    data->player->key_up = false;
+    data->player->key_down = false;
+    data->player->key_left = false;
+    data->player->key_right = false;
+    
+    data->player->x_pst = WIDTH / 2;
+    data->player->y_pst = HEIGHT / 2;
+    
     data->image = image;
     init_debug(image);
-    draw_map(data);
-    mlx_put_image_to_window(image->mlx, image->win, image->img, 0, 0);
-    mlx_hook(data->image->win, KeyPress, KeyPressMask, move_player, data);
+
+    mlx_hook(image->win, KeyPress, KeyPressMask, key_press, data);
+    mlx_hook(image->win, KeyRelease, KeyReleaseMask, key_release, data);
+    mlx_loop_hook(image->mlx, draw_loop, data);
     mlx_loop(image->mlx);
 }
