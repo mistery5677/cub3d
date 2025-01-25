@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/25 00:18:07 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/25 01:43:58 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define ESC 65307
 # define WALL '1'
 # define FLOOR '0'
+# define BLOCK 64
 # define WIDTH 1280
 # define HEIGHT 720
 # define A 97
@@ -30,7 +31,7 @@
 # define W 119
 
 # define LEFT 65361
-# define RIGHT 65353
+# define RIGHT 65363
 # define PI 3.1415926535
 
 typedef struct s_texture
@@ -55,8 +56,8 @@ typedef struct s_player
 	char		*look;
 	float		x_pst;
 	float		y_pst;
-	float		left_rotate;
-	float		right_rotate;
+	bool		left_rotate;
+	bool		right_rotate;
 	float		angle;
 	int			player;
 	bool		key_up;
