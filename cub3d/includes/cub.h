@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/25 01:43:58 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/25 23:08:14 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define S 115
 # define D 100
 # define W 119
+# define DEBUG 0
 
 # define LEFT 65361
 # define RIGHT 65363

@@ -168,9 +168,23 @@ bool touch(float px, float py, t_data *data)
     return false;
 }
 
-float calculate_distance(float x, float y)
+float calculate_distance(float x, float y) // This fucntion has the fish eye
 {
     return sqrt(x * x + y * y);
+}
+
+float fixed_calculate_distance(float x1, float y1, float x2, float y2, t_data *data)
+{
+    float delta_x;
+    float delta_y;
+    float angle;
+    float fix_distance;
+
+    delta_x = x2 - x1;
+    delta_y = y2 - y1;
+    angle = atan2(delta_y, delta_x) - data->player->angle;
+    fix_distance = calculate_distance(delta_x, delta_y) * cos(angle);
+    return fix_distance;
 }
 
 void draw_ray(t_data *data, float start_x, int i)
@@ -187,25 +201,31 @@ void draw_ray(t_data *data, float start_x, int i)
     cos_angle = cos(start_x);
     while (!touch(ray_x, ray_y, data))
     {
-        //put_pixel(ray_x, ray_y, 0xFF0000, data->image); // Draws the ray
+        if (DEBUG)
+        {
+            put_pixel(ray_x, ray_y, 0xFF0000, data->image); // Draws the ray
+        }
         ray_x += cos_angle;
         ray_y += sin_angle; 
     }
-
-    //Calculate distance
-    float distance;
-    float wall_height;
-    int start_y;
-    int end;
-
-    distance = calculate_distance(ray_x - data->player->x_pst, ray_y - data->player->y_pst);
-    wall_height = (BLOCK / distance) * (WIDTH / 2);
-    start_y = (HEIGHT - wall_height) / 2;
-    end = start_y + wall_height;
-    while (start_y < end)
+    if (!DEBUG)
     {
-        put_pixel(i, start_y, 0x00FF00, data->image);
-        start_y++;
+        float distance;
+        float wall_height;
+        int start_y;
+        int end;
+
+        // distance = calculate_distance(ray_x - data->player->x_pst, ray_y - data->player->y_pst); //Shows in a fish eye perspective 
+        distance = fixed_calculate_distance(data->player->x_pst, data->player->y_pst, ray_x, ray_y, data);
+        wall_height = (BLOCK / distance) * (WIDTH / 2);
+        start_y = (HEIGHT - wall_height) / 2;
+        end = start_y + wall_height;
+        while (start_y < end)
+        {
+            put_pixel(i, start_y, 0x00FF00, data->image);
+            start_y++;
+        }
+    //Calculate distance
     }
 }
 
@@ -222,8 +242,13 @@ int draw_loop(t_data *data)
     // sin_angle = sin(data->player->angle);
     move_player(data);
     clear_image(data->image);
-    //draw_map(data);
-    //draw_square(data->player->x_pst, data->player->y_pst, 5, 0x00FF00, data);
+    if (DEBUG)
+    {
+        draw_square(data->player->x_pst, data->player->y_pst, 5, 0x00FF00, data);
+        draw_map(data);
+
+    }
+
 
     float fraction;
     float start_x;
