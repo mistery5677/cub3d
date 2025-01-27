@@ -7,8 +7,8 @@ MINILIBX		=	$(MINILIBX_PATH)/libmlx.a
 SOURCES_FILES	=	cub3D.c \
 					errors/free_all.c \
 					initialize/init.c \
-					gameplay/gameplay.c \
-					render/render.c \
+					gameplay/gameplay.c gameplay/move_player.c \
+					render/render.c render/raycasting.c\
 					debug_function/debug.c \
 					parser/check_map.c parser/check_texture.c parser/verify_matrix_utils.c\
 

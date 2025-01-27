@@ -19,8 +19,7 @@ int main(int argc, char **argv)
 		return (-1);
 	}
 	create_window(data);
-	debug_window(data);
-	//ray_cast(data);
+	//debug_window(data);
 	gameplay(data);
 	mlx_loop(data->mlx);
 }

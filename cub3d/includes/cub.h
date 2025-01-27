@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/25 23:08:14 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/27 00:14:45 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define S 115
 # define D 100
 # define W 119
-# define DEBUG 0
+# define DEBUG 1
 
 # define LEFT 65361
 # define RIGHT 65363
@@ -55,18 +55,18 @@ typedef struct s_map
 typedef struct s_player
 {
 	char		*look;
+	float		speed;
+	float		angle_speed;
 	float		x_pst;
 	float		y_pst;
-	bool		left_rotate;
-	bool		right_rotate;
 	float		angle;
 	int			player;
 	bool		key_up;
 	bool		key_down;
 	bool		key_left;
 	bool		key_right;
-
-	
+	bool		left_rotate;
+	bool		right_rotate;
 }	t_player;
 
 /* DEBUG */
@@ -134,6 +134,7 @@ void	initialize_data(t_data *data);
  */
 
 void gameplay(t_data *data);
+void move_player(t_data *data);
 
 /***  FONT name: ANSI Shadow 
 ██╗   ██╗████████╗██╗██╗     ███████╗
@@ -150,15 +151,16 @@ int	check_line(t_data *data, char *line, int x);
 
 
 /***  FONT name: ANSI Shadow
-██████╗  █████╗ ██╗   ██╗ ██████╗ █████╗ ███████╗████████╗██╗███╗   ██╗ ██████╗ 
-██╔══██╗██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗██╔════╝╚══██╔══╝██║████╗  ██║██╔════╝ 
-██████╔╝███████║ ╚████╔╝ ██║     ███████║███████╗   ██║   ██║██╔██╗ ██║██║  ███╗
-██╔══██╗██╔══██║  ╚██╔╝  ██║     ██╔══██║╚════██║   ██║   ██║██║╚██╗██║██║   ██║
-██║  ██║██║  ██║   ██║   ╚██████╗██║  ██║███████║   ██║   ██║██║ ╚████║╚██████╔╝
-╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ 
+██████╗ ███████╗███╗   ██╗██████╗ ███████╗██████╗ 
+██╔══██╗██╔════╝████╗  ██║██╔══██╗██╔════╝██╔══██╗
+██████╔╝█████╗  ██╔██╗ ██║██║  ██║█████╗  ██████╔╝
+██╔══██╗██╔══╝  ██║╚██╗██║██║  ██║██╔══╝  ██╔══██╗
+██║  ██║███████╗██║ ╚████║██████╔╝███████╗██║  ██║
  */
-
-float ray_cast(t_data *data);
+void put_pixel(int x, int y, int color, t_data *data);
+void clear_image(t_data *data);
+int	draw_loop(t_data *data);
+float ray_cast(t_data *data, float start_x, int i);
 
 /***
 ██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗ 
