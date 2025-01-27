@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 19:50:08 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/27 15:31:02 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/01/27 19:27:27 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,30 @@ static bool check_wall(t_data *data, float cos_angle, float sin_angle)
 {
     float x;
     float y;
-    float gap = 1;
     
     x = data->player->x_pst;
     y = data->player->y_pst;
     if (data->player->key_up)
     {
-        x += (cos_angle * data->player->speed) + gap;
-        y += (sin_angle * data->player->speed) - gap;
+        x += (cos_angle * data->player->speed);
+        y += (sin_angle * data->player->speed);
     }
     if (data->player->key_down)
     {
-        x -= (cos_angle * data->player->speed) - gap;
-        y -= (sin_angle * data->player->speed) - gap;
+        x -= (cos_angle * data->player->speed);
+        y -= (sin_angle * data->player->speed);
     }
     if (data->player->key_left)
     {
-        x += (sin_angle * data->player->speed) + gap;
-        y -= (cos_angle * data->player->speed) - gap;
+        x += (sin_angle * data->player->speed);
+        y -= (cos_angle * data->player->speed);
     }
     if (data->player->key_right)
     {
-        x -= (sin_angle * data->player->speed) - gap;
-        y += (cos_angle * data->player->speed) + gap;
+        x -= (sin_angle * data->player->speed);
+        y += (cos_angle * data->player->speed);
     }
-    printf("x = %f  y = %f\n", x / BLOCK, y / BLOCK);
-    if (data->map->matrix[(int)y / BLOCK][(int)x / BLOCK] == WALL)
+    if (data->map->matrix[(int)(y / BLOCK)][(int)(x / BLOCK)] == WALL)
         return (true);
     return (false);
 }
