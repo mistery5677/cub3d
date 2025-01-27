@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/27 00:14:45 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/27 12:51:44 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@
 # define BLOCK 64
 # define WIDTH 1280
 # define HEIGHT 720
+# define ESC 65307
 # define A 97
 # define S 115
 # define D 100
 # define W 119
-# define DEBUG 1
+# define DEBUG 0
 
 # define LEFT 65361
 # define RIGHT 65363
@@ -99,7 +100,7 @@ typedef struct s_data
 ███████╗██║  ██║██║  ██║╚██████╔╝██║  ██║███████
 */
 
-void	free_all(t_data *data);
+int	close_game(t_data *data);
 
 /***  FONT name: ANSI Shadow
 ██████╗  █████╗ ██████╗ ███████╗███████╗██████╗ 

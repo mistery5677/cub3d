@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_matrix_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:37:05 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/22 14:34:49 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/27 12:06:42 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	check_line(t_data *data, char *line, int x)
 	int	i;
 
 	i = 0;
+	(void)x;
 	while (line[i])
 	{
 		if (line[i] != WALL
@@ -70,8 +71,8 @@ int	check_line(t_data *data, char *line, int x)
 				|| line[i] == 'S')
 			{
 				data->player->look = ft_strdup(line);
-				data->player->y_pst = i;
-				data->player->x_pst = x;
+				//data->player->y_pst = i;
+				//data->player->x_pst = x;
 				data->player->player++;
 			}
 			else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/26 19:53:44 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/27 12:06:03 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	initialize_player(t_data *data)
     data->player->key_right = false;
 	data->player->left_rotate = false;
     data->player->right_rotate = false;
+	data->player->x_pst = WIDTH / 2;
+	data->player->y_pst = HEIGHT / 2;
 	data->player->speed = 1;
 	data->player->angle_speed = 0.02;
 }

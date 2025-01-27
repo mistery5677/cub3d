@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 	initialize_data(data);
 	if (check_map(data, argc, argv) == -1)
 	{
-		free_all(data);
+		close_game(data);
 		return (-1);
 	}
 	create_window(data);

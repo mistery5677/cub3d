@@ -3,14 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 19:50:08 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/26 20:03:25 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/27 15:31:02 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
+
+static bool check_wall(t_data *data, float cos_angle, float sin_angle)
+{
+    float x;
+    float y;
+    float gap = 1;
+    
+    x = data->player->x_pst;
+    y = data->player->y_pst;
+    if (data->player->key_up)
+    {
+        x += (cos_angle * data->player->speed) + gap;
+        y += (sin_angle * data->player->speed) - gap;
+    }
+    if (data->player->key_down)
+    {
+        x -= (cos_angle * data->player->speed) - gap;
+        y -= (sin_angle * data->player->speed) - gap;
+    }
+    if (data->player->key_left)
+    {
+        x += (sin_angle * data->player->speed) + gap;
+        y -= (cos_angle * data->player->speed) - gap;
+    }
+    if (data->player->key_right)
+    {
+        x -= (sin_angle * data->player->speed) - gap;
+        y += (cos_angle * data->player->speed) + gap;
+    }
+    printf("x = %f  y = %f\n", x / BLOCK, y / BLOCK);
+    if (data->map->matrix[(int)y / BLOCK][(int)x / BLOCK] == WALL)
+        return (true);
+    return (false);
+}
 
 static void	turn_player_camera(t_data *data)
 {
@@ -31,13 +65,13 @@ static void move_player_camera(t_data *data, float cos_angle, float sin_angle)
 	speed = data->player->speed;
 	if (data->player->key_up)
     {
-        data->player->x_pst += cos_angle *speed;
-        data->player->y_pst += sin_angle *speed;
+        data->player->x_pst += cos_angle * speed;
+        data->player->y_pst += sin_angle * speed;
     }
     if (data->player->key_down)
     {
-        data->player->x_pst -= cos_angle *speed;
-        data->player->y_pst -= sin_angle *speed;
+        data->player->x_pst -= cos_angle * speed;
+        data->player->y_pst -= sin_angle * speed;
     }
     if (data->player->key_left)
     {
@@ -59,5 +93,6 @@ void	move_player(t_data *data)
 	cos_angle = cos(data->player->angle);
 	sin_angle = sin(data->player->angle);
 	turn_player_camera(data);
-	move_player_camera(data, cos_angle, sin_angle);
+    if (!check_wall(data, cos_angle, sin_angle))
+        move_player_camera(data, cos_angle, sin_angle);
 }
