@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:23:18 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/27 00:13:09 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/27 22:43:54 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,9 @@ void put_pixel(int x, int y, int color, t_data *data)
 
 void clear_image(t_data *data)
 {
-    int i;
-    int x;
-
-    i = 0;
-    while (i < HEIGHT)
+    if (data->image && data->image->addr)
     {
-        x = 0;
-        while (x < WIDTH)
-        {
-            put_pixel(x, i, 0.000000, data);
-            x++;
-        }
-        i++;
+        ft_memset(data->image->addr, 0, HEIGHT * data->image->line_length);
     }
 }
 

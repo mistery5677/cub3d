@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/27 12:51:44 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/01/28 00:06:14 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define ESC 65307
 # define WALL '1'
 # define FLOOR '0'
-# define BLOCK 64
+# define BLOCK 32
 # define WIDTH 1280
 # define HEIGHT 720
 # define ESC 65307
