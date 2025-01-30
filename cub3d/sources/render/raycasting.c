@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:03:05 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/30 01:14:34 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/30 14:34:02 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
-
-static bool is_wall(t_data *data, int px, int py)
-{
-	int x;
-    int y;
-
-    y = py / BLOCK;
-    x = px / BLOCK;
-    if (data->map->matrix[y][x] == '1')
-        return true;
-    return false;
-}
 
 float calculate_distance(float x, float y) // This fucntion has the fish eye
 {
@@ -90,19 +78,24 @@ float ray_cast(t_data *data, float start_x, int i)
     ray_y = data->player->y_pst;
     sin_angle = sin(start_x);
     cos_angle = cos(start_x);
-    while (!is_wall(data, ray_x, ray_y))
+    while (1)
     {
-        ray_x += cos_angle;
-        if (is_wall(data, ray_x, ray_y))
+        ray_x += cos_angle * 0.3;
+        if (data->map->matrix[(int)ray_y / BLOCK][(int)ray_x / BLOCK] == '1')
         {
-            printf("entrou\n");
-            data->texture->color = PURPLE;
+            if (ray_x < data->player->x_pst) // Weast walls
+                data->texture->color = PURPLE;
+            else // East walls
+                data->texture->color = GREY;
             break ;
         }
-        ray_y += sin_angle;
-        if (is_wall(data, ray_x, ray_y))
+        ray_y += sin_angle * 0.3;
+        if (data->map->matrix[(int)ray_y / BLOCK][(int)ray_x / BLOCK] == '1')
         {
-            data->texture->color = BLUE;
+            if (ray_y < data->player->y_pst) // North Walls
+                data->texture->color = BLUE;
+            else // South Walls
+                data->texture->color = PINK;
             break ;
         }
     }
