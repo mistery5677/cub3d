@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_texture.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/30 15:20:33 by miafonso          #+#    #+#             */
+/*   Updated: 2025/01/30 15:22:09 by miafonso         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub.h"
 
-static void set_wall_texture(t_data *data, char *line)
+static void	set_wall_texture(t_data *data, char *line)
 {
-	if(ft_strncmp(line, "NO ", 3) == 0 && !data->texture->no_texture)
+	if (ft_strncmp(line, "NO ", 3) == 0 && !data->texture->no_texture)
 		data->texture->no_texture = ft_strdup(ft_strchr(line, ' ') + 1);
-	if(ft_strncmp(line, "SO ", 3) == 0 && !data->texture->so_texture)
+	if (ft_strncmp(line, "SO ", 3) == 0 && !data->texture->so_texture)
 		data->texture->so_texture = ft_strdup(ft_strchr(line, ' ') + 1);
-	if(ft_strncmp(line, "WE ", 3) == 0 && !data->texture->we_texture)
+	if (ft_strncmp(line, "WE ", 3) == 0 && !data->texture->we_texture)
 		data->texture->we_texture = ft_strdup(ft_strchr(line, ' ') + 1);
-	if(ft_strncmp(line, "EA ", 3) == 0 && !data->texture->ea_texture)
+	if (ft_strncmp(line, "EA ", 3) == 0 && !data->texture->ea_texture)
 		data->texture->ea_texture = ft_strdup(ft_strchr(line, ' ') + 1);
-	if(ft_strncmp(line, "F ", 2) == 0 && !data->texture->f_texture)
+	if (ft_strncmp(line, "F ", 2) == 0 && !data->texture->f_texture)
 		data->texture->f_texture = ft_strdup(ft_strchr(line, ' ') + 1);
-	if(ft_strncmp(line, "C ", 2) == 0 && !data->texture->c_texture)
+	if (ft_strncmp(line, "C ", 2) == 0 && !data->texture->c_texture)
 		data->texture->c_texture = ft_strdup(ft_strchr(line, ' ') + 1);
 }
 
@@ -29,9 +41,9 @@ static int	check_rgb(t_data *data)
 	{
 		if (ft_atoi(f_split[i]) > 255
 			|| ft_atoi(c_split[i]) > 255)
-			{
-				return (-1);
-			}
+		{
+			return (-1);
+		}
 		i++;
 	}
 	free_array(f_split);
@@ -72,8 +84,6 @@ static int	write_map(t_data *data, int fd)
 	}
 	data->map->matrix = ft_split(backup, '\n');
 	free(backup);
-	// for (int i = 0; data->map->matrix[i]; i++)
-	// 	printf("data->map->matrix[%d] %s\n", i, data->map->matrix[i]);
 	return (0);
 }
 
@@ -88,7 +98,7 @@ int	check_walls_texture(t_data *data, char *file)
 	line = get_next_line(fd);
 	while (line && i < 8)
 	{
-		if (i != 5) //Para não considerar a linha vazia
+		if (i != 5) //To not consider the empty line
 			set_wall_texture(data, line);
 		free(line);
 		line = get_next_line(fd);

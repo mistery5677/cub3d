@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_all.c                                         :+:      :+:    :+:   */
+/*   close_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:46:23 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/21 23:18:17 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/01/30 13:51:26 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	free_map(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (data->map->matrix[i])
@@ -37,14 +37,19 @@ static void	free_texture(t_data *data)
 	free(data->texture);
 }
 
-void	free_all(t_data *data)
+int	close_game(t_data *data)
 {
 	free_texture(data);
 	free_map(data);
+	if (data->image)
+		mlx_destroy_image(data->mlx, data->image->img);
 	if (data->mlx)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->win)
 		mlx_destroy_display(data->mlx);
+	free(data->player->look);
+	free(data->player);
+	free(data->image);
 	free(data->mlx);
 	free(data);
 	exit(0);
