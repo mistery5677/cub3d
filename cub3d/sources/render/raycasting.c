@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:03:05 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/29 14:38:40 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/01/30 01:14:34 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void draw_walls(t_data *data, int i, float ray_x, float ray_y)
     } 
 	while (start_y < end_y)
 	{
-		put_pixel(i, start_y, 0x00FF00, data);
+		put_pixel(i, start_y, data->texture->color, data);
 		start_y++;
 	}
     while (end_y < HEIGHT)
@@ -85,7 +85,7 @@ float ray_cast(t_data *data, float start_x, int i)
 	float	sin_angle;
 	float	ray_x;
 	float	ray_y;
-	
+    
 	ray_x = data->player->x_pst;
     ray_y = data->player->y_pst;
     sin_angle = sin(start_x);
@@ -93,7 +93,18 @@ float ray_cast(t_data *data, float start_x, int i)
     while (!is_wall(data, ray_x, ray_y))
     {
         ray_x += cos_angle;
-        ray_y += sin_angle; 
+        if (is_wall(data, ray_x, ray_y))
+        {
+            printf("entrou\n");
+            data->texture->color = PURPLE;
+            break ;
+        }
+        ray_y += sin_angle;
+        if (is_wall(data, ray_x, ray_y))
+        {
+            data->texture->color = BLUE;
+            break ;
+        }
     }
 	draw_walls(data, i, ray_x, ray_y);
 	return 0;

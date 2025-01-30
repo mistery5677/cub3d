@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/27 12:51:44 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/01/30 00:37:41 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@
 # define W 119
 # define DEBUG 0
 
+# define PURPLE 0x660033
+# define GREEN 0x00FF00
+# define BLUE 0x6666FF
+# define GREY 0xA0A0A0
+# define PINK 0xFF66B2
 # define LEFT 65361
 # define RIGHT 65363
 # define PI 3.1415926535
@@ -44,6 +49,7 @@ typedef struct s_texture
 	char    *ea_texture;
 	char    *f_texture;
 	char    *c_texture;
+	int		color;
 }   t_texture;
 
 typedef struct s_map
