@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 22:37:05 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/27 12:06:42 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:27:27 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_up_down(char *line)
 	return (0);
 }
 
-int check_line_limit(char *line)
+int	check_line_limit(char *line)
 {
 	int	i;
 	int	size;
@@ -71,8 +71,8 @@ int	check_line(t_data *data, char *line, int x)
 				|| line[i] == 'S')
 			{
 				data->player->look = ft_strdup(line);
-				//data->player->y_pst = i;
-				//data->player->x_pst = x;
+				//data->player->y_pst = i	 * BLOCK;
+				//data->player->x_pst = x * BLOCK;
 				data->player->player++;
 			}
 			else
