@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   close_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:46:23 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/10 14:04:54 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:17:44 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub.h"
+#include "../../includes/cub.h" // ! can change to cub.h
 
 static void	free_map(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (data->map->matrix[i])
+	while (data->map->matrix && data->map->matrix[i])
 	{
 		free(data->map->matrix[i]);
 		i++;
@@ -28,12 +28,16 @@ static void	free_map(t_data *data)
 
 static void	free_texture(t_data *data)
 {
-	free(data->texture->no_texture);
-	free(data->texture->ea_texture);
-	free(data->texture->we_texture);
-	free(data->texture->so_texture);
-	free(data->texture->c_texture);
-	free(data->texture->f_texture);
+	if (data->active)
+	{
+		printf("IS FREEING\n");
+		free(data->texture->no_texture);
+		free(data->texture->ea_texture);
+		free(data->texture->we_texture);
+		free(data->texture->so_texture);
+	}
+	// free(data->texture->c_texture);  // ! not mallocd
+	// free(data->texture->f_texture);	// ! 
 	free(data->texture);
 }
 
@@ -41,16 +45,17 @@ int	close_game(t_data *data)
 {
 	free_texture(data);
 	free_map(data);
-	if (data->image)
+	if (data->active && data->image)
 		mlx_destroy_image(data->mlx, data->image->img);
-	if (data->mlx)
+	if (data->active && data->mlx)
 		mlx_destroy_window(data->mlx, data->win);
-	if (data->win)
+	if (data->active && data->win)
 		mlx_destroy_display(data->mlx);
 	free(data->player->look);
 	free(data->player);
 	free(data->image);
 	free(data->mlx);
+	// free(data->active);
 	free(data);
 	exit(0);
 }

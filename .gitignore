@@ -1,0 +1,6 @@
+libraries/minilibx/
+*.o
+*.a
+.vscode
+docker*
+cub3d/cub3D
