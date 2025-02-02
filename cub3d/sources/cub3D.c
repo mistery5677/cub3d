@@ -1,4 +1,4 @@
-#include "../includes/cub.h"
+#include "cub.h"
 
 int main(int argc, char **argv)
 {
@@ -6,20 +6,17 @@ int main(int argc, char **argv)
 
     (void)argc;
     (void)argv;
-	data = malloc(sizeof(t_data));
+	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
-	{
-		ft_putstr_fd("Error allocating memory\n", 2);
-		exit(127);
-	}
+		exit(print_error(NULL, strerror(errno), ENOMEM)); // ! using ENOMEM 12
 	initialize_data(data);
-	if (check_map(data, argc, argv) == -1)
-	{
-		close_game(data);
-		return (-1);
-	}
+	if (!is_map_valid(data, argc, argv))
+		return (close_game(data), EXIT_FAILURE);
+	printf("CHECK\n");
+	close_game(data); // ! testing if parsing frees successfully
 	create_window(data);
 	//debug_window(data);
 	gameplay(data);
 	mlx_loop(data->mlx);
+	return(0);
 }
