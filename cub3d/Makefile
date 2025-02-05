@@ -5,6 +5,7 @@ MINILIBX_PATH	=	libraries/minilibx
 MINILIBX		=	$(MINILIBX_PATH)/libmlx.a
 
 SOURCES_FILES	=	cub3D.c \
+					draw/draw_textures.c draw/math.c\
 					errors/close_game.c \
 					initialize/init.c \
 					gameplay/gameplay.c gameplay/move_player.c \

@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "cub.h": "c",
-        "aio.h": "c"
+        "aio.h": "c",
+        "iterator": "c",
+        "stdlib.h": "c"
     }
 }

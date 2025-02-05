@@ -3,17 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 19:50:08 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/30 15:06:30 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:12:32 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
+static bool	check_player_size(t_data *data, int new_x, int new_y)
+{
+	int bottom;
+	int right;
+	int left;
+	int top;
+
+	left   = (int)((new_x - PLAYER_SIZE) / BLOCK);
+	right  = (int)((new_x + PLAYER_SIZE) / BLOCK);
+	top    = (int)((new_y - PLAYER_SIZE) / BLOCK);
+	bottom = (int)((new_y + PLAYER_SIZE) / BLOCK);
+	if (data->map->matrix[top][left] == WALL
+		|| data->map->matrix[top][right] == WALL
+		|| data->map->matrix[bottom][left] == WALL
+		|| data->map->matrix[bottom][right] == WALL)
+		return (true);
+	return (false);
+}
+
 static bool	check_wall(t_data *data, t_player player,
-						float cos_angle, float sin_angle)
+	float cos_angle, float sin_angle)
 {
 	if (data->player->key_up)
 	{
@@ -35,8 +54,7 @@ static bool	check_wall(t_data *data, t_player player,
 		player.x_pst -= (sin_angle * data->player->speed);
 		player.y_pst += (cos_angle * data->player->speed);
 	}
-	if (data->map->matrix[(int)(player.y_pst / BLOCK)]
-			[(int)(player.x_pst / BLOCK)] == WALL)
+	if (check_player_size(data, player.x_pst, player.y_pst) == true)
 		return (true);
 	return (false);
 }
