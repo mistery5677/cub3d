@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:03:05 by mistery576        #+#    #+#             */
-/*   Updated: 2025/01/30 14:47:02 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:31:50 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,25 @@ static void draw_walls(t_data *data, int i, float ray_x, float ray_y)
     }
 }
 
+// static void draw_texture(t_data *data, int i, float ray_x, float ray_y)
+// {
+//     (void)data;
+//     float distance;
+//     float distance;
+//     float wall_height;
+//     int start_y;
+//     int end_y;
+    
+//     distance = fixed_calculate_distance(data->player->x_pst, data->player->y_pst, ray_x, ray_y, data);
+//     wall_height = (BLOCK / distance) * (WIDTH / 2);
+//     start_y = (HEIGHT - wall_height) / 2;
+//     end_y = start_y + wall_height;
+//     while (start_y < end_y)
+//     {
+        
+//     }
+// }
+
 float ray_cast(t_data *data, float start_x, int i)
 {
 	float	cos_angle;
@@ -84,21 +103,33 @@ float ray_cast(t_data *data, float start_x, int i)
         if (data->map->matrix[(int)ray_y / BLOCK][(int)ray_x / BLOCK] == '1')
         {
             if (ray_x < data->player->x_pst) // Weast walls
+            {
                 data->texture->color = PURPLE;
+	            draw_walls(data, i, ray_x, ray_y);
+            }
             else // East walls
+            {
                 data->texture->color = GREY;
+	            draw_walls(data, i, ray_x, ray_y);
+            }
             break ;
         }
         ray_y += sin_angle * 0.3;
         if (data->map->matrix[(int)ray_y / BLOCK][(int)ray_x / BLOCK] == '1')
         {
             if (ray_y < data->player->y_pst) // North Walls
+            {
                 data->texture->color = BLUE;
+	            draw_walls(data, i, ray_x, ray_y);
+                //draw_texture(data, i, ray_x, ray_y);          
+            }
             else // South Walls
+            {
                 data->texture->color = PINK;
+	            draw_walls(data, i, ray_x, ray_y);
+            }
             break ;
         }
     }
-	draw_walls(data, i, ray_x, ray_y);
 	return 0;
 }
