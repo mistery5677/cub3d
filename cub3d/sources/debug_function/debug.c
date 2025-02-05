@@ -1,7 +1,7 @@
 #include "../../includes/cub.h"
 
 // // IMPROVED mlx_debug_put_pixel
-void debug_put_pixel(int x, int y, int color, t_image *image)
+void debug_put_pixel(int x, int y, int color, t_image_debug *image)
 {
     int index;
 
@@ -15,7 +15,7 @@ void debug_put_pixel(int x, int y, int color, t_image *image)
     image->addr[index + 2] = (color >> 16) & 0xFF;
 }
 
-void debug_clear_image(t_image *image)
+void debug_clear_image(t_image_debug *image)
 {
     int i;
     int x;
@@ -37,13 +37,13 @@ void debug_clear_image(t_image *image)
 void debug_draw_square (int x, int y, int size, int color, t_data *data)
 {
     for (int i = 0; i < size; i++)
-        debug_put_pixel(x + i, y, color, data->image);
+        debug_put_pixel(x + i, y, color, data->debug);
     for (int i = 0; i < size; i++)
-        debug_put_pixel(x, y + i, color, data->image);
+        debug_put_pixel(x, y + i, color, data->debug);
     for (int i = 0; i < size; i++)
-        debug_put_pixel(x + size, y + i, color, data->image);
+        debug_put_pixel(x + size, y + i, color, data->debug);
     for (int i = 0; i < size; i++)
-        debug_put_pixel(x + i, y + size, color, data->image);    
+        debug_put_pixel(x + i, y + size, color, data->debug);    
 }
 
 void debug_draw_map(t_data *data)
@@ -67,7 +67,7 @@ void debug_draw_map(t_data *data)
     }
 }
 
-void debug_init_debug(t_image *image)
+void debug_init_debug(t_image_debug *image)
 {
     image->mlx = mlx_init();
     image->win = mlx_new_window(image->mlx, WIDTH, HEIGHT, "Debug");
@@ -202,7 +202,7 @@ void debug_draw_ray(t_data *data, float start_x, int i)
     {
         if (DEBUG)
         {
-            debug_put_pixel(ray_x, ray_y, 0xFF0000, data->image); // Draws the ray
+            debug_put_pixel(ray_x, ray_y, 0xFF0000, data->debug); // Draws the ray
         }
         ray_x += cos_angle;
         ray_y += sin_angle; 
@@ -221,7 +221,7 @@ void debug_draw_ray(t_data *data, float start_x, int i)
         end = start_y + wall_height;
         while (start_y < end)
         {
-            debug_put_pixel(i, start_y, 0x00FF00, data->image);
+            debug_put_pixel(i, start_y, 0x00FF00, data->debug);
             start_y++;
         }
     //Calculate distance
@@ -240,11 +240,12 @@ int debug_draw_loop(t_data *data)
     // cos_angle = cos(data->player->angle);
     // sin_angle = sin(data->player->angle);
     debug_move_player(data);
-    debug_clear_image(data->image);
+    debug_clear_image(data->debug);
     if (DEBUG)
     {
         debug_draw_square(data->player->x_pst, data->player->y_pst, 5, 0x00FF00, data);
         debug_draw_map(data);
+        mlx_put_image_to_window(data->debug->mlx, data->debug->win, data->debug->img, 0, 0);
     }
 
 
@@ -264,20 +265,20 @@ int debug_draw_loop(t_data *data)
     // DRAWS A SINGLE LINE
     // while (!touch(ray_x, ray_y, data))
     // {
-    //     debug_put_pixel(ray_x, ray_y, 0xFF0000, data->image);
+    //     debug_put_pixel(ray_x, ray_y, 0xFF0000, data->debug);
     //     ray_x += cos_angle;
     //     ray_y += sin_angle;
     // }
-    //draw_loop(data);
-    mlx_put_image_to_window(data->image->mlx, data->image->win, data->image->img, 0, 0);
+    draw_loop(data);
+    mlx_put_image_to_window(data->debug->mlx, data->debug->win, data->debug->img, 0, 0);
     return (0);
 }
 
 void debug_window(t_data *data)
 {
-    t_image *image;
+    t_image_debug *image;
 
-    image = malloc(sizeof(t_image));
+    image = malloc(sizeof(t_image_debug));
 
     data->player->key_up = false;
     data->player->key_down = false;
@@ -289,7 +290,7 @@ void debug_window(t_data *data)
     data->player->angle = PI / 2;
     data->player->left_rotate = false;
     data->player->right_rotate = false;
-    data->image = image;
+    data->debug = image;
     debug_init_debug(image);
     mlx_hook(image->win, KeyPress, KeyPressMask, debug_key_press, data);
     mlx_hook(image->win, KeyRelease, KeyReleaseMask, debug_key_release, data);

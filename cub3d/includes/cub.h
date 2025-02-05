@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/05 11:58:57 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:22:28 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define S 115
 # define D 100
 # define W 119
-# define DEBUG 1
+# define DEBUG 0
 
 # define PURPLE 0x660033
 # define GREEN 0x00FF00
@@ -77,7 +77,17 @@ typedef struct s_player
 }	t_player;
 
 /* DEBUG */
-typedef struct s_image {
+typedef struct s_image_debug {
+	void 	*mlx;
+	void 	*win;
+    void    *img;
+    char    *addr;
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+}   t_image_debug;
+
+typedef struct s_image{
 	void 	*mlx;
 	void 	*win;
     void    *img;
@@ -96,6 +106,7 @@ typedef struct s_data
 	t_player	*player;
 	t_texture   *texture;
 	t_image		*image;
+	t_image_debug		*debug;
 }   t_data;
 
 /***  FONT name: ANSI Shadow

@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	{
 		create_window(data);
 		gameplay(data);
-		draw_loop(data);
+		//draw_loop(data);
 		debug_window(data);
 		//mlx_loop(data->mlx);
 	}
