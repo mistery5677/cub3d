@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/05 12:22:28 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:42:13 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,17 @@
 
 typedef struct s_texture
 {
-	char    *no_texture;
+	void    *no_texture;
 	char    *so_texture;
 	char    *we_texture;
 	char    *ea_texture;
 	char    *f_texture;
 	char    *c_texture;
 	int		color;
+	void	*img;
+	int		width;
+	int		height;
+	  
 }   t_texture;
 
 typedef struct s_map
@@ -179,6 +183,17 @@ void put_pixel(int x, int y, int color, t_data *data);
 void clear_image(t_data *data);
 int	draw_loop(t_data *data);
 float ray_cast(t_data *data, float start_x, int i);
+
+/**
+████████╗███████╗██╗  ██╗████████╗██╗   ██╗██████╗ ███████╗███████╗
+╚══██╔══╝██╔════╝╚██╗██╔╝╚══██╔══╝██║   ██║██╔══██╗██╔════╝██╔════╝
+   ██║   █████╗   ╚███╔╝    ██║   ██║   ██║██████╔╝█████╗  ███████╗
+   ██║   ██╔══╝   ██╔██╗    ██║   ██║   ██║██╔══██╗██╔══╝  ╚════██║
+   ██║   ███████╗██╔╝ ██╗   ██║   ╚██████╔╝██║  ██║███████╗███████║
+   ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
+ */
+
+void draw_textures(t_data *data);
 
 /***
 ██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗ 
