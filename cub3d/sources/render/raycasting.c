@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:03:05 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/07 23:18:54 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/08 02:15:40 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ float   ray_cast(t_data *data, float start_x, int i)
             {
                 // data->texture->color = BLUE;
 	            // draw_walls(data, i, ray_x, ray_y);
-                draw_textures(data, i, ray_x, ray_y);          
+                draw_textures(data, i, ray_x, ray_y, 1);          
             }
             else // South Walls
             {

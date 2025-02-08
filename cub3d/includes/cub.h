@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/07 23:18:30 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/08 02:05:41 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ float ray_cast(t_data *data, float start_x, int i);
    ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
  */
 float fixed_calculate_distance(float x1, float y1, float x2, float y2, t_data *data);
-void draw_textures(t_data *data, int i, float ray_x, float ray_y);
+void draw_textures(t_data *data, int i, float ray_x, float ray_y, int side);
 
 
 /***
