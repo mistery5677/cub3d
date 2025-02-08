@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/06 15:35:14 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/07 23:22:03 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	initialize_player(t_data *data)
 
 static void	initialize_textures(t_data *data)
 {
-	data->texture->no_texture = NULL;
+	//data->texture->no_texture = mlx_xpm_file_to_image(data->mlx, "/home/mistery576/cub3D/cub3d/textures/NORTH.xpm", &data->texture->width, &data->texture->height);
+	printf("entrou\n");
 	data->texture->so_texture = NULL;
 	data->texture->we_texture = NULL;
 	data->texture->ea_texture = NULL;
@@ -74,6 +75,8 @@ int	create_window(t_data *data)
 	image->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel,
 			&image->line_length, &image->endian);
+	data->texture->no_texture = mlx_xpm_file_to_image(data->mlx, "/home/mistery576/cub3D/cub3d/textures/NORTH.xpm", &data->texture->width, &data->texture->height);
+
 	mlx_put_image_to_window(data->mlx, data->win, data->image->img, 0, 0);
 	return (0);
 }

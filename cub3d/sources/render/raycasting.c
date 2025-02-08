@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:03:05 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/05 11:31:50 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/07 23:18:54 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ static void draw_walls(t_data *data, int i, float ray_x, float ray_y)
 //     }
 // }
 
-float ray_cast(t_data *data, float start_x, int i)
-{
+float   ray_cast(t_data *data, float start_x, int i)
+{   
 	float	cos_angle;
 	float	sin_angle;
 	float	ray_x;
@@ -119,9 +119,9 @@ float ray_cast(t_data *data, float start_x, int i)
         {
             if (ray_y < data->player->y_pst) // North Walls
             {
-                data->texture->color = BLUE;
-	            draw_walls(data, i, ray_x, ray_y);
-                //draw_texture(data, i, ray_x, ray_y);          
+                // data->texture->color = BLUE;
+	            // draw_walls(data, i, ray_x, ray_y);
+                draw_textures(data, i, ray_x, ray_y);          
             }
             else // South Walls
             {
