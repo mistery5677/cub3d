@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:03:05 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/08 02:15:40 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/08 12:02:51 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ static void draw_walls(t_data *data, int i, float ray_x, float ray_y)
         put_pixel(i, y, 0xFF0000, data);
         y++;
     } 
-	while (start_y < end_y)
+	while (start_y <= end_y)
 	{
 		put_pixel(i, start_y, data->texture->color, data);
 		start_y++;
 	}
-    while (end_y < HEIGHT)
+    while (end_y <= HEIGHT)
     {
         put_pixel(i, end_y, 0x0000FF, data);
         end_y++;
