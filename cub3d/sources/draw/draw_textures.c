@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:05:03 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/10 16:46:38 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:11:02 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ static void	draw_floor_ceiling(t_data *data, int i, int start_y, int end_y)
 	}
 }
 
-static void draw_walls(t_data *data, int i, int tex_x)
+static void	draw_walls(t_data *data, int i, int tex_x)
 {
-	int d;
-	int tex_y;
-	int color;
+	int	converter;
+	int	tex_y;
+	int	color;
 
 	while (data->wall->start_y < data->wall->end_y)
 	{
-		d = data->wall->start_y * 256 - HEIGHT * 128 + data->wall->height * 128;
-		tex_y = ((d * 64) / data->wall->height) / 256;
+		converter = data->wall->start_y * 256 - HEIGHT * 128 + data->wall->height * 128;
+		tex_y = ((converter * 64) / data->wall->height) / 256;
 		color = get_pixel_color(data->wall->texture, tex_x, tex_y);
 		put_pixel(i, data->wall->start_y, color, data);
 		data->wall->start_y++;
@@ -61,8 +61,8 @@ static void draw_walls(t_data *data, int i, int tex_x)
 
 void	draw_textures(t_data *data, int i, float ray_x, float ray_y)
 {
-	int tex_x;
-	
+	int	tex_x;
+
 	data->wall->distance = fixed_calculate_distance(ray_x, ray_y, data);
 	data->wall->height = (BLOCK / data->wall->distance) * (WIDTH / 2);
 	data->wall->start_y = (HEIGHT - data->wall->height) / 2;
@@ -72,11 +72,17 @@ void	draw_textures(t_data *data, int i, float ray_x, float ray_y)
 	draw_walls(data, i, tex_x);
 }
 
-
 /** DICTIONARY
  * 
  * WALLX --> Where the ray hit
  * SIDE --> Verify if the
  * perpWallDist --> Distance from player to the wall
  * get_pixel_color() --> Returns the expecific pixel texture
+ * converter = data->wall->start_y * 256 - 
+ * 			HEIGHT * 128 + data->wall->height * 128;
+ *  --> adjusts the pixel position on the screen to a 
+ * 		proportional value within the wall. We multiply by
+ * 		256 and 128 to prevent some errors when we try to convert
+ * 		a fractional number.
+ * tex_y --> Convets to wall texture coordenates
  * */
