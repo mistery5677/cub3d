@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/08 12:25:02 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/10 10:07:27 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int load_textures(t_data *data)
 {
-	data->texture->no_texture = mlx_xpm_file_to_image(data->mlx, "/home/mistery576/cub3D/cub3d/textures/CAT.xpm", &data->texture->width, &data->texture->height);
-	data->texture->so_texture = mlx_xpm_file_to_image(data->mlx, "/home/mistery576/cub3D/cub3d/textures/SOUTH.xpm", &data->texture->width, &data->texture->height);
-	data->texture->we_texture = mlx_xpm_file_to_image(data->mlx, "/home/mistery576/cub3D/cub3d/textures/WEST.xpm", &data->texture->width, &data->texture->height);
-	data->texture->ea_texture = mlx_xpm_file_to_image(data->mlx, "/home/mistery576/cub3D/cub3d/textures/EAST.xpm", &data->texture->width, &data->texture->height);
+	data->texture->no_texture = mlx_xpm_file_to_image(data->mlx, "textures/CAT.xpm", &data->texture->width, &data->texture->height);
+	data->texture->so_texture = mlx_xpm_file_to_image(data->mlx, "textures/SOUTH.xpm", &data->texture->width, &data->texture->height);
+	data->texture->we_texture = mlx_xpm_file_to_image(data->mlx, "textures/WEAST.xpm", &data->texture->width, &data->texture->height);
+	data->texture->ea_texture = mlx_xpm_file_to_image(data->mlx, "textures/EAST.xpm", &data->texture->width, &data->texture->height);
 	//data->texture->f_texture = mlx_xpm_file_to_image(data->mlx, "/home/mistery576/cub3D/cub3d/textures/FLOOR.xpm", &data->texture->width, &data->texture->height);
 	//data->texture->c_texture = mlx_xpm_file_to_image(data->mlx, "/home/mistery576/cub3D/cub3d/textures/CEILING.xpm", &data->texture->width, &data->texture->height);
 	if (!data->texture->no_texture || !data->texture->so_texture

@@ -2,10 +2,10 @@
 
 #include "../../includes/cub.h"
 
-int get_pixel_color(t_data *data, int x, int y)
+int get_pixel_color(void *texture, int x, int y)
 {
     int bpp, size_line, endian;
-    char *data2 = mlx_get_data_addr(data->texture->no_texture, &bpp, &size_line, &endian);
+    char *data2 = mlx_get_data_addr(texture, &bpp, &size_line, &endian);
     return *(int *)(data2 + (y * size_line + x * (bpp / 8)));
 }
 
@@ -46,10 +46,11 @@ void draw_textures(t_data *data, int i, float ray_x, float ray_y, int side)
         if (texY < 0) texY = 0;
         if (texY >= texheight) texY = texheight - 1;
 
-        int color = get_pixel_color(data, texX, texY);
+        int color = get_pixel_color(data->use_texture, texX, texY);
         put_pixel(i, start_y, color, data);
         start_y++;
     }
+    
 }
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/08 02:05:41 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/10 09:59:51 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@
 typedef struct s_texture
 {
 	void    *no_texture;
-	char    *so_texture;
-	char    *we_texture;
-	char    *ea_texture;
+	void    *so_texture;
+	void    *we_texture;
+	void    *ea_texture;
 	char    *f_texture;
 	char    *c_texture;
 	int		color;
@@ -105,6 +105,7 @@ typedef struct s_data
 {
 	void        *mlx;
 	void        *win;
+	void		*use_texture;
 	float		fov;
 	t_map       *map;
 	t_player	*player;
