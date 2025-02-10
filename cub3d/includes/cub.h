@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/10 15:44:42 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:37:00 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_wall
 	float		height;
 	void		*texture;
 	int			side;
+	int			start_y;
+	int			end_y;
 }	t_wall;
 
 typedef struct s_texture

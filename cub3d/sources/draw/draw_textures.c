@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:05:03 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/10 16:35:43 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:46:38 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,34 +43,33 @@ static void	draw_floor_ceiling(t_data *data, int i, int start_y, int end_y)
 	}
 }
 
-// static void draw_walls(t_data)
+static void draw_walls(t_data *data, int i, int tex_x)
+{
+	int d;
+	int tex_y;
+	int color;
+
+	while (data->wall->start_y < data->wall->end_y)
+	{
+		d = data->wall->start_y * 256 - HEIGHT * 128 + data->wall->height * 128;
+		tex_y = ((d * 64) / data->wall->height) / 256;
+		color = get_pixel_color(data->wall->texture, tex_x, tex_y);
+		put_pixel(i, data->wall->start_y, color, data);
+		data->wall->start_y++;
+	}
+}
 
 void	draw_textures(t_data *data, int i, float ray_x, float ray_y)
 {
-	int start_y;
-	int end_y;
 	int tex_x;
 	
 	data->wall->distance = fixed_calculate_distance(ray_x, ray_y, data);
 	data->wall->height = (BLOCK / data->wall->distance) * (WIDTH / 2);
-	start_y = (HEIGHT - data->wall->height) / 2;
-	end_y = start_y + data->wall->height;
+	data->wall->start_y = (HEIGHT - data->wall->height) / 2;
+	data->wall->end_y = data->wall->start_y + data->wall->height;
 	tex_x = verify_side(data, ray_x, ray_y);
-	draw_floor_ceiling(data, i, start_y, end_y);
-	// draw_walls(data, start_y, end_y)
-	// Calculate the exact x-coordinate on the texture
-	while (start_y < end_y)
-	{
-		int d = start_y * 256 - HEIGHT * 128 + data->wall->height * 128;
-		int texY = ((d * 64) / data->wall->height) / 256;
-		if (texY < 0) texY = 0;
-		if (texY >= 64) texY = 64 - 1;
-
-		int color = get_pixel_color(data->wall->texture, tex_x, texY);
-		put_pixel(i, start_y, color, data);
-		start_y++;
-	}
-	
+	draw_floor_ceiling(data, i, data->wall->start_y, data->wall->end_y);
+	draw_walls(data, i, tex_x);
 }
 
 
