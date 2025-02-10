@@ -9,7 +9,7 @@ int get_pixel_color(void *texture, int x, int y)
     return *(int *)(data2 + (y * size_line + x * (bpp / 8)));
 }
 
-void draw_textures(t_data *data, int i, float ray_x, float ray_y, int side)
+void draw_textures(t_data *data, int i, float ray_x, float ray_y)
 {
     float distance;
     float wall_height;
@@ -26,9 +26,9 @@ void draw_textures(t_data *data, int i, float ray_x, float ray_y, int side)
 
     // Calculate the exact x-coordinate on the texture
     float wallX;
-    if (side == 0) { // Parede vertical (colisão no eixo X)
+    if (data->wall->side == VERTICAL) { // Vertical walls
         wallX = ray_y;
-    } else { // Parede horizontal (colisão no eixo Y)
+    } else { // Horizontal walls
         wallX = ray_x;
     }
     wallX /= BLOCK;  // Normalizando para o tamanho do bloco
@@ -46,7 +46,7 @@ void draw_textures(t_data *data, int i, float ray_x, float ray_y, int side)
         if (texY < 0) texY = 0;
         if (texY >= texheight) texY = texheight - 1;
 
-        int color = get_pixel_color(data->use_texture, texX, texY);
+        int color = get_pixel_color(data->wall->texture, texX, texY);
         put_pixel(i, start_y, color, data);
         start_y++;
     }

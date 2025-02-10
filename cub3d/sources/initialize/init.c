@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/10 10:07:27 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:22:59 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	initialize_data(t_data *data)
 	data->texture = malloc(sizeof(t_texture));
 	data->player = malloc(sizeof(t_player));
 	data->image = malloc(sizeof(t_image));
+	data->wall = malloc(sizeof(t_wall));
 	if (!data->texture || !data->map
 		|| !data->player || !data->image)
 	{

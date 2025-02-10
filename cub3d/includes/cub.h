@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/10 09:59:51 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:28:34 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+
+
 # define ESC 65307
 # define WALL '1'
 # define FLOOR '0'
@@ -31,6 +33,8 @@
 # define D 100
 # define W 119
 # define DEBUG 0
+# define VERTICAL 2
+# define HORIZONTAL 3
 
 # define PURPLE 0x660033
 # define GREEN 0x00FF00
@@ -40,6 +44,12 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define PI 3.1415926535
+
+typedef struct s_wall
+{
+	void 	*texture;
+	int		side;
+}	t_wall;
 
 typedef struct s_texture
 {
@@ -112,6 +122,7 @@ typedef struct s_data
 	t_texture   *texture;
 	t_image		*image;
 	t_image_debug		*debug;
+	t_wall 		*wall;
 }   t_data;
 
 /***  FONT name: ANSI Shadow
@@ -194,7 +205,7 @@ float ray_cast(t_data *data, float start_x, int i);
    ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
  */
 float fixed_calculate_distance(float x1, float y1, float x2, float y2, t_data *data);
-void draw_textures(t_data *data, int i, float ray_x, float ray_y, int side);
+void draw_textures(t_data *data, int i, float ray_x, float ray_y);
 
 
 /***
