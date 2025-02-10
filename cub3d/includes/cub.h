@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/10 15:15:15 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:44:42 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@
 
 typedef struct s_wall
 {
-	void 	*texture;
-	int		distance;
-	int		wall_height;
-	int		side;
+	float		distance;
+	float		height;
+	void		*texture;
+	int			side;
 }	t_wall;
 
 typedef struct s_texture
@@ -206,6 +206,7 @@ float ray_cast(t_data *data, float start_x, int i);
    ██║   ███████╗██╔╝ ██╗   ██║   ╚██████╔╝██║  ██║███████╗███████║
    ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
  */
+int	verify_side(t_data *data, float ray_x, float ray_y);
 float fixed_calculate_distance(float x2, float y2, t_data *data);
 void draw_textures(t_data *data, int i, float ray_x, float ray_y);
 
