@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:05:03 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/10 17:11:02 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:16:44 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static void	draw_walls(t_data *data, int i, int tex_x)
 
 	while (data->wall->start_y < data->wall->end_y)
 	{
-		converter = data->wall->start_y * 256 - HEIGHT * 128 + data->wall->height * 128;
+		converter = data->wall->start_y * 256
+			- HEIGHT * 128 + data->wall->height * 128;
 		tex_y = ((converter * 64) / data->wall->height) / 256;
 		color = get_pixel_color(data->wall->texture, tex_x, tex_y);
 		put_pixel(i, data->wall->start_y, color, data);

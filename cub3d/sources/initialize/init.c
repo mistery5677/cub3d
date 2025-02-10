@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/10 14:06:59 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:21:25 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,13 @@ static int	load_textures(t_data *data, t_texture *tx)
 	tx->so_texture = mlx_xpm_file_to_image(data->mlx, "tx/S.xpm", tx_w, tx_h);
 	tx->we_texture = mlx_xpm_file_to_image(data->mlx, "tx/WE.xpm", tx_w, tx_h);
 	tx->ea_texture = mlx_xpm_file_to_image(data->mlx, "tx/E.xpm", tx_w, tx_h);
-	//data->texture->f_texture = mlx_xpm_file_to_image(data->mlx, "/home/mistery576/cub3D/cub3d/textures/FLOOR.xpm", &data->texture->width, &data->texture->height);
-	//data->texture->c_texture = mlx_xpm_file_to_image(data->mlx, "/home/mistery576/cub3D/cub3d/textures/CEILING.xpm", &data->texture->width, &data->texture->height);
 	if (!data->texture->no_texture || !data->texture->so_texture
 		|| !data->texture->we_texture || !data->texture->ea_texture
 		|| !data->texture->f_texture || !data->texture->c_texture)
 	{
-		//free_paths(data->texture);
 		ft_putstr_fd("Error loading textures\n", 2);
 		return (-1);
 	}
-	//free_paths(data->texture);
 	return (0);
 }
 
@@ -82,12 +78,11 @@ int	create_window(t_data *data)
 	image = data->image;
 	(void)data;
 	data->mlx = mlx_init();
-	//mlx_get_screen_size protection for big maps
-	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
+ 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
 	image->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel,
 			&image->line_length, &image->endian);
-	load_textures(data, data->texture);
+		load_textures(data, data->texture);
 	mlx_put_image_to_window(data->mlx, data->win, data->image->img, 0, 0);
 	return (0);
 }
