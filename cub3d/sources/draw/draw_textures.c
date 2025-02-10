@@ -16,7 +16,7 @@ void draw_textures(t_data *data, int i, float ray_x, float ray_y)
     int start_y;
     int end_y;
 
-    distance = fixed_calculate_distance(data->player->x_pst, data->player->y_pst, ray_x, ray_y, data);
+    distance = fixed_calculate_distance(ray_x, ray_y, data);
     wall_height = (BLOCK / distance) * (WIDTH / 2);
     start_y = (HEIGHT - wall_height) / 2;
     end_y = start_y + wall_height;

@@ -6,42 +6,42 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:23:18 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/10 09:49:41 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:57:14 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-void put_pixel(int x, int y, int color, t_data *data)
+void	put_pixel(int x, int y, int color, t_data *data)
 {
-    int index;
+	int	index;
 
-    if (!data->image || !data->image->addr)
-        return ;
-    if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0 )
-        return ;
-    index = y * data->image->line_length + x * data->image->bits_per_pixel / 8;
-    data->image->addr[index] = color & 0xFF;
-    data->image->addr[index + 1] = (color >> 8) & 0xFF;
-    data->image->addr[index + 2] = (color >> 16) & 0xFF;
+	if (!data->image || !data->image->addr)
+		return ;
+	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
+		return ;
+	index = y * data->image->line_length + x * data->image->bits_per_pixel / 8;
+	data->image->addr[index] = color & 0xFF;
+	data->image->addr[index + 1] = (color >> 8) & 0xFF;
+	data->image->addr[index + 2] = (color >> 16) & 0xFF;
 }
 
-void clear_image(t_data *data)
+void	clear_image(t_data *data)
 {
-    int i;
-    int x;
+	int	i;
+	int	x;
 
-    i = 0;
-    while (i < HEIGHT)
-    {
-        x = 0;
-        while (x < WIDTH)
-        {
-            put_pixel(x, i, 0.000000, data);
-            x++;
-        }
-        i++;
-    }
+	i = 0;
+	while (i < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			put_pixel(x, i, 0.000000, data);
+			x++;
+		}
+		i++;
+	}
 }
 
 int	draw_loop(t_data *data)
@@ -74,7 +74,8 @@ int	draw_loop(t_data *data)
 //     x = 0;
 //     while (x < WIDTH)
 //     {
-//         angle = data->player->angle - data->fov / 2 + (float)x / WIDTH * data->fov;
+//         angle = data->player->angle - 
+//				data->fov / 2 + (float)x / WIDTH * data->fov;
 //         distance = cat_ray(angle);
 //         distance *= cos(data->player->angle - angle);
 //     }
