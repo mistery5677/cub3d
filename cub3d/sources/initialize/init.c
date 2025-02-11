@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/10 17:21:25 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/11 00:03:10 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	initialize_data(t_data *data)
 	}
 	data->win = NULL;
 	data->mlx = NULL;
-	data->fov = 60;
+	data->fov = 20;
 	initialize_player(data);
 }
 
@@ -78,11 +78,11 @@ int	create_window(t_data *data)
 	image = data->image;
 	(void)data;
 	data->mlx = mlx_init();
- 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
 	image->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel,
 			&image->line_length, &image->endian);
-		load_textures(data, data->texture);
+	load_textures(data, data->texture);
 	mlx_put_image_to_window(data->mlx, data->win, data->image->img, 0, 0);
 	return (0);
 }

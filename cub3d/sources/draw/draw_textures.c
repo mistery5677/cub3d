@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:05:03 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/10 17:16:44 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/10 23:42:15 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ static void	draw_walls(t_data *data, int i, int tex_x)
 		converter = data->wall->start_y * 256
 			- HEIGHT * 128 + data->wall->height * 128;
 		tex_y = ((converter * 64) / data->wall->height) / 256;
+		if (tex_y < 0)
+			tex_y = 0;
+		if (tex_y >= 64)
+			tex_y = 64 - 1;
 		color = get_pixel_color(data->wall->texture, tex_x, tex_y);
 		put_pixel(i, data->wall->start_y, color, data);
 		data->wall->start_y++;
@@ -64,6 +68,8 @@ void	draw_textures(t_data *data, int i, float ray_x, float ray_y)
 {
 	int	tex_x;
 
+	(void)i;
+	(void)tex_x;
 	data->wall->distance = fixed_calculate_distance(ray_x, ray_y, data);
 	data->wall->height = (BLOCK / data->wall->distance) * (WIDTH / 2);
 	data->wall->start_y = (HEIGHT - data->wall->height) / 2;
