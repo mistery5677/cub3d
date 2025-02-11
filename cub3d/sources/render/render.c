@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:23:18 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/10 13:57:14 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/11 00:10:06 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,23 @@ void	put_pixel(int x, int y, int color, t_data *data)
 	data->image->addr[index + 1] = (color >> 8) & 0xFF;
 	data->image->addr[index + 2] = (color >> 16) & 0xFF;
 }
-
+/** We are changing all the pixels, directly in the buffer */
 void	clear_image(t_data *data)
 {
-	int	i;
-	int	x;
+	char	*dst;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	int		total_bytes;
+	int		i;
 
+	dst = mlx_get_data_addr(data->image->img, &bpp, &size_line, &endian);
+	if (!dst)
+		return;
+	total_bytes = HEIGHT * size_line;
 	i = 0;
-	while (i < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			put_pixel(x, i, 0.000000, data);
-			x++;
-		}
-		i++;
-	}
+	while (i < total_bytes)
+		dst[i++] = 0;
 }
 
 int	draw_loop(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:17:37 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/10 23:41:13 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/11 11:39:57 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ typedef struct s_data
 	void			*mlx;
 	void			*win;
 	void			*use_texture;
-	float			fov;
 }	t_data;
 
 #endif

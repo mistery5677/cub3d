@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/11 00:03:10 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/11 11:40:03 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	initialize_data(t_data *data)
 	}
 	data->win = NULL;
 	data->mlx = NULL;
-	data->fov = 20;
 	initialize_player(data);
 }
 
