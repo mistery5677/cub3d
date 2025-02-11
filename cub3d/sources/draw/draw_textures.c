@@ -6,21 +6,15 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:05:03 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/11 12:23:31 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/11 19:51:33 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-static int	get_pixel_color(void *texture, int x, int y)
+static int	get_pixel_color(t_data *data, char *image, int x, int y)
 {
-	char	*data;
-	int		bpp;
-	int		size_line;
-	int		endian;
-
-	data = mlx_get_data_addr(texture, &bpp, &size_line, &endian);
-	return (*(int *)(data + (y * size_line + x * (bpp / 8))));
+	return (*(int *)(image + (y * data->texture->size_line + x * (data->texture->bpp / 8))));
 }
 
 static void	draw_floor_ceiling(t_data *data, int i, int start_y, int end_y)
@@ -48,17 +42,19 @@ static void	draw_walls(t_data *data, int i, int tex_x)
 	int	converter;
 	int	tex_y;
 	int	color;
+	char *image;
 
+	image = mlx_get_data_addr(data->wall->texture, &(data)->texture->bpp, &(data)->texture->size_line, &(data)->texture->endian);
 	while (data->wall->start_y < data->wall->end_y)
 	{
 		converter = data->wall->start_y * 256
-			- HEIGHT * 128 + data->wall->height * 128;
+		- HEIGHT * 128 + data->wall->height * 128;
 		tex_y = ((converter * 64) / data->wall->height) / 256;
 		if (tex_y < 0)
 			tex_y = 0;
 		if (tex_y >= 64)
 			tex_y = 64 - 1;
-		color = get_pixel_color(data->wall->texture, tex_x, tex_y);
+		color = get_pixel_color(data, image, tex_x, tex_y);
 		put_pixel(i, data->wall->start_y, color, data);
 		data->wall->start_y++;
 	}
