@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 19:50:08 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/11 12:12:32 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/12 23:22:22 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static bool	check_player_size(t_data *data, int new_x, int new_y)
 {
-	int bottom;
-	int right;
-	int left;
-	int top;
+	int	bottom;
+	int	right;
+	int	left;
+	int	top;
 
-	left   = (int)((new_x - PLAYER_SIZE) / BLOCK);
-	right  = (int)((new_x + PLAYER_SIZE) / BLOCK);
-	top    = (int)((new_y - PLAYER_SIZE) / BLOCK);
+	left = (int)((new_x - PLAYER_SIZE) / BLOCK);
+	right = (int)((new_x + PLAYER_SIZE) / BLOCK);
+	top = (int)((new_y - PLAYER_SIZE) / BLOCK);
 	bottom = (int)((new_y + PLAYER_SIZE) / BLOCK);
 	if (data->map->matrix[top][left] == WALL
 		|| data->map->matrix[top][right] == WALL

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:46:23 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 16:17:42 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 23:21:32 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	close_game(t_data *data)
 {
 	free_texture(data);
 	free_map(data);
-	if (data->active >= 3  && data->image)
+	if (data->active >= 3 && data->image)
 		mlx_destroy_image(data->mlx, data->image->img);
 	if (data->active >= 2 && data->mlx)
 		mlx_destroy_window(data->mlx, data->win);
