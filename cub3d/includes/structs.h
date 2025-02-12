@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:17:37 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 22:31:17 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/13 11:36:25 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_texture
 	void			*so_texture;
 	void			*we_texture;
 	void			*ea_texture;
-	char			*no_path;		// ! maybe not alloc'd
+	char			*no_path;
 	char			*ea_path;
 	char			*so_path;
 	char			*we_path;
@@ -121,7 +121,7 @@ typedef struct s_data
 	void			*win;
 	void			*use_texture;
 	int				fov;
-	int				active; // 0 = nothing 1 = image 2 = window 3 = display
+	// int				active; // 0 = nothing 1 = image 2 = window 3 = display
 }	t_data;
 
 #endif
