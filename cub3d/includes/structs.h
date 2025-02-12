@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:17:37 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/11 16:14:14 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/12 12:27:53 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,21 @@
 # define STRUCTS_H
 # include "cub.h"
 # include <stdbool.h>
+
+typedef enum e_txt_type
+{
+	NO,
+	SO,
+	EA,
+	WE,
+	F,
+	C
+}				t_txt_type;
+
+typedef struct s_parse
+{
+	int			rgb[3];
+}				t_parse;
 
 typedef struct s_wall
 {
@@ -31,9 +46,13 @@ typedef struct s_texture
 	void			*so_texture;
 	void			*we_texture;
 	void			*ea_texture;
+	char		*no_path;		// ! maybe not alloc'd
+	char		*ea_path;
+	char		*so_path;
+	char		*we_path;
 	void			*img;
-	char			*f_texture;
-	char			*c_texture;
+	int			f_texture;
+	int			c_texture;
 	int				color;
 	int				width;
 	int				height;
@@ -47,6 +66,7 @@ typedef struct s_map
 	char			**matrix;
 	int				height;
 	int				width;
+	bool		player_found;
 }	t_map;
 
 typedef struct s_player
@@ -100,6 +120,8 @@ typedef struct s_data
 	void			*mlx;
 	void			*win;
 	void			*use_texture;
+	int				fov;
+	int				active; // 0 = nothing 1 = image 2 = window 3 = display
 }	t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:46:23 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 12:17:44 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:29:42 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	close_game(t_data *data)
 	free(data->player);
 	free(data->image);
 	free(data->mlx);
-	// free(data->active);
+	free(data->wall);
 	free(data);
 	exit(0);
 }

@@ -12,8 +12,10 @@ int	main(int argc, char **argv)
 	initialize_data(data);
 	if (!is_map_valid(data, argc, argv))
 		return (close_game(data), EXIT_FAILURE);
-	printf("CHECK\n");
-	close_game(data); // ! testing if parsing frees successfully
+	// printf("CHECK\n");
+	// close_game(data); // ! testing if parsing frees successfully
+	data->player->x_pst = 1;
+	data->player->y_pst = 1;
 	if (DEBUG == 1)
 	{
 		create_window(data);

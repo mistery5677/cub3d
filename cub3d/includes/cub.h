@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 12:17:09 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:27:13 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libraries/minilibx/mlx.h"
 # include "errors.h"
 # include <fcntl.h>
-// # include "macro.h"
+# include "macro.h"
 # include "structs.h"
 # include <linux/types.h>
 // #include <sys/stat.h>
@@ -27,110 +27,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-
-# define ESC 65307
-# define WALL '1'
-# define FLOOR '0'
-# define BLOCK 64
-# define ZOOM 3
-# define SF ZOOM // Scale Factor
-# define WIDTH 320
-# define HEIGHT 180
-# define ESC 65307
-# define A 97
-# define S 115
-# define D 100
-# define W 119
-# define DEBUG 0
-
-# define PURPLE 0x660033
-# define GREEN 0x00FF00
-# define BLUE 0x6666FF
-# define GREY 0xA0A0A0
-# define PINK 0xFF66B2
-# define LEFT 65361
-# define RIGHT 65363
-# define PI 3.1415926535
-
-typedef enum e_txt_type
-{
-	NO,
-	SO,
-	EA,
-	WE,
-	F,
-	C,
-	M
-}				t_txt_type;
-
-typedef struct s_parse
-{
-	int			rgb[3];
-}				t_parse;
-
-typedef struct s_texture
-{
-	void		*no_texture;
-	void		*ea_texture;
-	void		*so_texture;
-	void		*we_texture;
-	char		*no_path;		// ! not alloc'd
-	char		*ea_path;
-	char		*so_path;
-	char		*we_path;
-	int			f_texture;
-	int			c_texture;
-	int			color;
-}				t_texture;
-
-typedef struct s_map
-{
-	char		**matrix;
-	int			height;
-	int			width;
-	bool		player_found;
-}				t_map;
-
-typedef struct s_player
-{
-	char		*look;
-	float		speed;
-	float		angle_speed;
-	float		x_pst;
-	float		y_pst;
-	float		angle;
-	int			player;
-	bool		key_up;
-	bool		key_down;
-	bool		key_left;
-	bool		key_right;
-	bool		left_rotate;
-	bool		right_rotate;
-}				t_player;
-
-/* DEBUG */
-typedef struct s_image
-{
-	void		*mlx;
-	void		*win;
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-}				t_image;
-
-typedef struct s_data
-{
-	void		*mlx;
-	void		*win;
-	float		fov;
-	t_map		*map;
-	t_player	*player;
-	t_texture	*texture;
-	t_image		*image;
-	int			active; // 0 = nothing 1 = image 2 = window 3 = display
-}				t_data;
 
 /*
 ███████╗██████╗ ██████╗  ██████╗ ██████╗ ███████╗
