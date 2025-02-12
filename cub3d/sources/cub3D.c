@@ -7,7 +7,6 @@ int	main(int argc, char **argv)
 	initialize_data(&data);
 	if (!is_map_valid(&data, argc, argv))
 		return (close_game(&data), EXIT_FAILURE);
-	print_matrix(data.map->matrix);
 	if (DEBUG == 1)
 	{
 		create_window(&data);

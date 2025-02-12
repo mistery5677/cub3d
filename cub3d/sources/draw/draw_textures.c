@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:05:03 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/12 00:41:31 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/12 16:43:19 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,15 @@ static void	draw_floor_ceiling(t_data *data, int i, int start_y, int end_y)
 	int	y;
 
 	y = 0;
-	data->texture->color = BLUE;
 	while (y < start_y)
 	{
-		put_pixel(i, y, data->texture->color, data);
+		put_pixel(i, y, data->texture->c_texture, data);
 		y++;
 	}
 	y = end_y;
-	data->texture->color = 0xFF0000;
 	while (y < HEIGHT)
 	{
-		put_pixel(i, y, data->texture->color, data);
+		put_pixel(i, y, data->texture->f_texture, data);
 		y++;
 	}
 }
