@@ -35,7 +35,7 @@ OBJECTS			= $(patsubst $(SOURCES_DIR)/%.c,$(OBJECTS_DIR)/%.o,$(SOURCES))
 
 NAME			= cub3D
 
-CC				= cc -g
+CC				= cc -g -O0
 RM				= rm -rf
 
 CFLAGS			= -Wall -Wextra -Werror $(INCLUDES)

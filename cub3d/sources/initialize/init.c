@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 12:18:23 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:48:21 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,13 @@ int	create_window(t_data *data)
 	t_image	*image;
 
 	image = data->image;
+	data->active = 1;
 	// (void)data;
 	data->mlx = mlx_init();
+	data->active = 2;
 	//mlx_get_screen_size // ! might be useful to auto set zoom level
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
+	data->active = 3;
 	image->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel,
 			&image->line_length, &image->endian);
