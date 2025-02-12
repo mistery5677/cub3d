@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:46:23 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 16:01:14 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:17:42 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,10 @@ static void	free_map(t_data *data)
 
 static void	free_texture(t_data *data)
 {
-	mlx_destroy_image(data->texture->no_texture);
-	// free(data->texture->no_texture);
-	// free(data->texture->ea_texture);
-	// free(data->texture->so_texture);
-	// free(data->texture->we_texture);
-	// data->texture->so_texture;
-	// data->texture->we_texture;
-	// data->texture->ea_texture;
-	// data->texture->f_texture;
-	// data->texture->c_texture;
+	mlx_destroy_image(data->mlx, data->texture->no_texture);
+	mlx_destroy_image(data->mlx, data->texture->ea_texture);
+	mlx_destroy_image(data->mlx, data->texture->so_texture);
+	mlx_destroy_image(data->mlx, data->texture->we_texture);
 	free(data->texture);
 }
 
@@ -56,6 +50,5 @@ int	close_game(t_data *data)
 	free(data->image);
 	free(data->mlx);
 	free(data->wall);
-	// free(data); // ! static local variable
 	exit(0);
 }
