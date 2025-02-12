@@ -25,6 +25,6 @@ int	main(int argc, char **argv)
 		create_window(&data);
 		gameplay(&data);
 		mlx_loop(data.mlx);
-	return(0);
 	}
-}
+	return(0);
+} 
