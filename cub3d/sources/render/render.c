@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:23:18 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/11 00:10:06 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/12 00:38:46 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 void	put_pixel(int x, int y, int color, t_data *data)
 {
-	int	index;
+	char	*pixel;
+	int		index;
 
 	if (!data->image || !data->image->addr)
 		return ;
-	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 		return ;
-	index = y * data->image->line_length + x * data->image->bits_per_pixel / 8;
-	data->image->addr[index] = color & 0xFF;
-	data->image->addr[index + 1] = (color >> 8) & 0xFF;
-	data->image->addr[index + 2] = (color >> 16) & 0xFF;
+	index = (y * data->image->line_length) + (x * (data->image->bits_per_pixel >> 3));
+	pixel = data->image->addr + index;
+	*(int *)pixel = color;
 }
+
 /** We are changing all the pixels, directly in the buffer */
 void	clear_image(t_data *data)
 {
