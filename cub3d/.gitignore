@@ -1,3 +1,4 @@
 libraries/minilibx/
 *.o
 *.a
+cub3D
