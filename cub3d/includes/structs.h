@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:17:37 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 12:27:53 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:11:39 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ typedef struct s_texture
 	void			*so_texture;
 	void			*we_texture;
 	void			*ea_texture;
-	char		*no_path;		// ! maybe not alloc'd
-	char		*ea_path;
-	char		*so_path;
-	char		*we_path;
+	char			*no_path;
+	char			*ea_path;
+	char			*so_path;
+	char			*we_path;
 	void			*img;
-	int			f_texture;
-	int			c_texture;
+	int				f_texture;
+	int				c_texture;
 	int				color;
 	int				width;
 	int				height;
@@ -121,7 +121,7 @@ typedef struct s_data
 	void			*win;
 	void			*use_texture;
 	int				fov;
-	int				active; // 0 = nothing 1 = image 2 = window 3 = display
+	// int				active; // 0 = nothing 1 = image 2 = window 3 = display
 }	t_data;
 
 #endif

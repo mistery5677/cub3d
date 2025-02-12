@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 16:09:24 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/07 15:19:42 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:56:22 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define PLAYS_MSG "More than one player found"
 # define NOPLAY_MSG "No player found"
 # define FLR_MSG "Floor/player tiles must be surrounded by walls"
+# define LOAD_MSG "Error loading element"
 
 # define SPACES " \t\n\v\f\r"
 # define VALID_CHARS " 10NSEW"

@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:10:37 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/08 12:04:16 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:26:30 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 char	*get_texture_path(char *line)
 {
 	char	*text;
+	char	*new_str;
 	char	*end;
 	int		i;
 
@@ -33,7 +34,10 @@ char	*get_texture_path(char *line)
 	while (end > text && ft_isspace(*(end - 1)))
 		end--;
 	*end = '\0';
-	return (text);
+	new_str = ft_strdup(text);
+	if (!new_str)
+		return (NULL);
+	return (new_str);
 }
 
 void	add_texture_to_struct(t_data *data, t_txt_type type, char *path)
@@ -59,10 +63,10 @@ int	parse_texture(t_data *data, char *line, t_txt_type type)
 	if (!path)
 		return (print_error("Texture", NOFILE_MSG, ERR_FAIL));
 	if (is_file_dir(path))
-		return (print_error("Texture", DIR_MSG, ERR_FAIL));
+		return (free(path), print_error("Texture", DIR_MSG, ERR_FAIL));
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		return (print_error("Texture", strerror(errno), ERR_FAIL));
+		return (free(path), print_error("Texture", strerror(errno), ERR_FAIL));
 	close(fd);
 	add_texture_to_struct(data, type, path); // ! TEST THIS
 	return (0);

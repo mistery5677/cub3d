@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 16:17:11 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:21:21 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,8 @@ static int	load_textures(t_data *data, t_texture *tx)
 	tx->we_texture = mlx_xpm_file_to_image(data->mlx, "tx/WE.xpm", tx_w, tx_h);
 	tx->ea_texture = mlx_xpm_file_to_image(data->mlx, "tx/E.xpm", tx_w, tx_h);
 	if (!data->texture->no_texture || !data->texture->so_texture
-		|| !data->texture->we_texture || !data->texture->ea_texture
-		|| !data->texture->f_texture || !data->texture->c_texture)
-	{
-		ft_putstr_fd("Error loading textures\n", 2);
-		return (-1);
-	}
+		|| !data->texture->we_texture || !data->texture->ea_texture)
+		return (print_error("Textures", LOAD_MSG, ENOMEM), -1);
 	return (0);
 }
 
@@ -58,7 +54,7 @@ void	initialize_data(t_data *data)
 	}
 	data->fov = 60;
 	initialize_player(data);
-	data->active = 0; // ! change to levels 0, 1, 2, 3
+	// data->active = 0; // ! change to levels 0, 1, 2, 3
 }
 
 int	create_window(t_data *data)
@@ -66,16 +62,20 @@ int	create_window(t_data *data)
 	t_image	*image;
 
 	image = data->image;
-	data->active = 1;
 	data->mlx = mlx_init();
-	data->active = 2;
+	if (!data->mlx) // ! TEST
+		return (print_error("INIT", strerror(errno), ENOMEM), close_game(data));
 	//mlx_get_screen_size // ! might be useful to auto set zoom level
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
-	data->active = 3;
+	if (!data->win) // ! TEST
+		return (print_error("INIT", strerror(errno), ENOMEM), close_game(data));
 	image->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (!image->img) // !  TEST
+		return (print_error("INIT", strerror(errno), ENOMEM), close_game(data));
 	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel,
 			&image->line_length, &image->endian);
-	load_textures(data, data->texture);
-	mlx_put_image_to_window(data->mlx, data->win, data->image->img, 0, 0);
+	if (load_textures(data, data->texture) < 0)
+		return (close_game(data)); // ! test! 
+	mlx_put_image_to_window(data->mlx, data->win, data->image->img, 0, 0); // ! NEEDS PROTECTION
 	return (0);
 }
