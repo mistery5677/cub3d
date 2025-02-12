@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:05:03 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/11 19:51:33 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/12 00:41:31 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ static void	draw_floor_ceiling(t_data *data, int i, int start_y, int end_y)
 
 static void	draw_walls(t_data *data, int i, int tex_x)
 {
+	int	converter_base = -HEIGHT * 128 + data->wall->height * 128;
+	int tex_scale = (64 * 256) / data->wall->height;
+
+	float step = 64.0f / data->wall->height;
+	float tex_pos = (data->wall->start_y - (HEIGHT / 2) + (data->wall->height / 2)) * step;
+
 	int	converter;
 	int	tex_y;
 	int	color;
@@ -47,16 +53,23 @@ static void	draw_walls(t_data *data, int i, int tex_x)
 	image = mlx_get_data_addr(data->wall->texture, &(data)->texture->bpp, &(data)->texture->size_line, &(data)->texture->endian);
 	while (data->wall->start_y < data->wall->end_y)
 	{
-		converter = data->wall->start_y * 256
-		- HEIGHT * 128 + data->wall->height * 128;
-		tex_y = ((converter * 64) / data->wall->height) / 256;
+		converter = data->wall->start_y * 256 + converter_base;
+		tex_y = (converter * tex_scale) / 256;
+		// converter = data->wall->start_y * 256
+		// - HEIGHT * 128 + data->wall->height * 128;
+		// tex_y = ((converter * 64) / data->wall->height) / 256;
 		if (tex_y < 0)
 			tex_y = 0;
 		if (tex_y >= 64)
 			tex_y = 64 - 1;
+		tex_y = (int)tex_pos & 63;  // Mantém o tex_y dentro do range [0, 63]
 		color = get_pixel_color(data, image, tex_x, tex_y);
 		put_pixel(i, data->wall->start_y, color, data);
+		tex_pos += step;  // Incremento otimizado
 		data->wall->start_y++;
+		// color = get_pixel_color(data, image, tex_x, tex_y);
+		// put_pixel(i, data->wall->start_y, color, data);
+		// data->wall->start_y++;
 	}
 }
 
