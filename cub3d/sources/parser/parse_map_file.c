@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:19:01 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/08 13:05:48 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:55:27 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,8 @@ bool	is_map_valid(t_data *data, int argc, char **argv)
 		return (false);
 	if (trim_map(data) == ERR_FAIL)
 		return (false);
-	if (parse_map_chars(data->map, data->map->matrix) == ERR_FAIL)
+	if (parse_map_chars(data, data->map, data->map->matrix) == ERR_FAIL)
 		return (false);
-	print_matrix(data->map->matrix);
 	// return (false); // ! temporary
 	return (true);
 }

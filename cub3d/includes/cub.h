@@ -6,17 +6,17 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 12:27:13 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:25:00 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
+# include "macro.h"
 # include "../libraries/libft/include/libft.h"
 # include "../libraries/minilibx/mlx.h"
 # include "errors.h"
 # include <fcntl.h>
-# include "macro.h"
 # include "structs.h"
 # include <linux/types.h>
 // #include <sys/stat.h>
@@ -55,7 +55,8 @@ int				trim_map(t_data *data);
 int				find_longest_usable_string(char **arr);
 char			*trim_chars_from_start(char *str, int num_chars);
 int				find_shortest_lead(char **arr);
-int				parse_map_chars(t_map *data, char **map);
+int				parse_map_chars(t_data *data, t_map *map_d, char **map);
+void 			set_player_starting_angle(t_data *data, char c);
 
 // * UTILS *
 bool			is_line_only_spaces(char *line);

@@ -6,11 +6,23 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:55:56 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/07 12:52:26 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:28:51 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+void set_player_starting_angle(t_data *data, char c)
+{
+	if (c == 'N')
+		data->player->angle = 3 * (PI / 2);
+	else if (c == 'E')
+		data->player->angle = 0;
+	else if (c == 'S')
+		data->player->angle = PI / 2;
+	else if (c == 'W')
+		data->player->angle = PI;
+}
 
 bool	is_valid_char(char c)
 {

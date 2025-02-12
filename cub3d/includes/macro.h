@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   macro.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:16:22 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/11 19:53:21 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/12 13:18:03 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACRO_H
 # define MACRO_H
 # include "cub.h"
+
+#define _USE_MATH_DEFINES
 
 # define ESC 65307
 # define LEFT 65361
@@ -38,7 +40,7 @@
 # define GREY 0xA0A0A0
 # define PINK 0xFF66B2
 
-# define PI 3.1415926535
+# define PI 3.14159265358979323846
 
 # define DEBUG 0
 #endif
