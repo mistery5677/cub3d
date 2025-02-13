@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:23:18 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 23:26:03 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/13 15:55:20 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	draw_loop(t_data *data)
 	clear_image(data);
 	while (i < WIDTH)
 	{
-		ray_cast(data, start_x, i);
+		dda_algorithm(data, data->ray, start_x, i);
 		start_x += fraction;
 		i++;
 	}

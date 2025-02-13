@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/13 11:36:46 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:07:11 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static int	load_textures(t_data *data, t_texture *tx)
 
 	tx_w = &(tx)->width;
 	tx_h = &(tx)->height;
-	tx->no_texture = mlx_xpm_file_to_image(data->mlx, "tx/PN.xpm", tx_w, tx_h);
-	tx->so_texture = mlx_xpm_file_to_image(data->mlx, "tx/PS.xpm", tx_w, tx_h);
-	tx->we_texture = mlx_xpm_file_to_image(data->mlx, "tx/GW.xpm", tx_w, tx_h);
-	tx->ea_texture = mlx_xpm_file_to_image(data->mlx, "tx/GE.xpm", tx_w, tx_h);
+	tx->no_texture = mlx_xpm_file_to_image(data->mlx, tx->no_path, tx_w, tx_h);
+	tx->so_texture = mlx_xpm_file_to_image(data->mlx, tx->so_path, tx_w, tx_h);
+	tx->we_texture = mlx_xpm_file_to_image(data->mlx, tx->we_path, tx_w, tx_h);
+	tx->ea_texture = mlx_xpm_file_to_image(data->mlx, tx->ea_path, tx_w, tx_h);
 	if (!data->texture->no_texture || !data->texture->so_texture
 		|| !data->texture->we_texture || !data->texture->ea_texture)
 		return (print_error("Textures", LOAD_MSG, ENOMEM), -1);
@@ -42,6 +42,7 @@ void	initialize_data(t_data *data)
 	data->texture = ft_calloc(1, sizeof(t_texture));
 	data->player = ft_calloc(1, sizeof(t_player));
 	data->image = ft_calloc(1, sizeof(t_image));
+	data->ray = ft_calloc(1, sizeof(t_ray));
 	data->wall = malloc(sizeof(t_wall));
 	if (!data->texture || !data->map || !data->player || !data->image)
 	{
