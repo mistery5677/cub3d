@@ -6,32 +6,32 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:03:05 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/13 15:53:57 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:41:28 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
 /* This funcstion has the fish eye effect*/
-float	calculate_distance(float x, float y)
-{
-	return (sqrt(x * x + y * y));
-}
+// float	calculate_distance(float x, float y)
+// {
+// 	return (sqrt(x * x + y * y));
+// }
 
-/* Fix the fish eye effect*/
-float	fixed_calculate_distance(float x2, float y2, t_data *data)
-{
-	float	delta_x;
-	float	delta_y;
-	float	angle;
-	float	fix_distance;
+// /* Fix the fish eye effect*/
+// float	fixed_calculate_distance(float x2, float y2, t_data *data)
+// {
+// 	float	delta_x;
+// 	float	delta_y;
+// 	float	angle;
+// 	float	fix_distance;
 
-	delta_x = x2 - data->player->x_pst;
-	delta_y = y2 - data->player->y_pst;
-	angle = atan2(delta_y, delta_x) - data->player->angle;
-	fix_distance = calculate_distance(delta_x, delta_y) * cos(angle);
-	return (fix_distance);
-}
+// 	delta_x = x2 - data->player->x_pst;
+// 	delta_y = y2 - data->player->y_pst;
+// 	angle = atan2(delta_y, delta_x) - data->player->angle;
+// 	fix_distance = calculate_distance(delta_x, delta_y) * cos(angle);
+// 	return (fix_distance);
+// }
 
 // static void draw_walls(t_data *data, int i, float ray_x, float ray_y)
 // {

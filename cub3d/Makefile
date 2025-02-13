@@ -9,7 +9,7 @@ OBJECTS_DIR		= objects
 INCLUDES		= -Iincludes
 
 SOURCES_FILES	= cub3D.c \
-					draw/draw_textures.c draw/math.c\
+				  draw/draw_textures.c draw/math.c\
 				  errors/close_game.c \
 				  errors/print_error.c \
 				  initialize/init.c \

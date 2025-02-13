@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/13 14:10:56 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:39:37 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int				check_line(t_data *data, char *line, int x);
 ██║  ██║███████╗██║ ╚████║██████╔╝███████╗██║  ██║
  */
 float 	dda_algorithm(t_data *data, t_ray *ray, float start_x, int i);
-float	ray_cast(t_data *data, float start_x, int i);
+//float	ray_cast(t_data *data, float start_x, int i);
 void	put_pixel(int x, int y, int color, t_data *data);
 void	clear_image(t_data *data);
 int		draw_loop(t_data *data);
