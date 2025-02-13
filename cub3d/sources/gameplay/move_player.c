@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 19:50:08 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 23:22:22 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/16 16:33:34 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ static bool	check_wall(t_data *data, t_player player,
 	return (false);
 }
 
+/** We have to reset the angles, when we 
+ * exceed the "limit" (0° - 360°)
+*/
 static void	turn_player_camera(t_data *data)
 {
 	if (data->player->left_rotate == true)
@@ -71,11 +74,18 @@ static void	turn_player_camera(t_data *data)
 		data->player->angle += 2 * PI;
 }
 
+/** To move in our game, we use angles to know
+ * where is the player, instead using the
+ * map coordinates as X and y. Because in a
+ * 3D game, you can look around you, and the
+ * player coordenates depends on the way you
+ * are looking.
+*/
 static void	move_player_camera(t_data *data, float cos_angle, float sin_angle)
 {
 	float	speed;
 
-	speed = data->player->speed;
+	set_speed(data->player, &speed);
 	if (data->player->key_up)
 	{
 		data->player->x_pst += cos_angle * speed;

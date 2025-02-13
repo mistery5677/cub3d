@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:17:37 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/13 11:36:25 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/16 00:52:19 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_map
 	char			**matrix;
 	int				height;
 	int				width;
-	bool		player_found;
+	bool			player_found;
 }	t_map;
 
 typedef struct s_player
@@ -109,6 +109,20 @@ typedef struct s_image
 	int				endian;
 }	t_image;
 
+typedef struct s_ray
+{
+	float			cos_angle;
+	float			sin_angle;
+	float			ray_dir_x;
+	float			ray_dir_y;
+	float			delta_x;
+	float			delta_y;
+	float			side_dist_x;
+	float			side_dist_y;
+	int				step_x;
+	int				step_y;
+}	t_ray;
+
 typedef struct s_data
 {
 	t_image_debug	*debug;
@@ -117,6 +131,7 @@ typedef struct s_data
 	t_image			*image;
 	t_wall			*wall;
 	t_map			*map;
+	t_ray			*ray;
 	void			*mlx;
 	void			*win;
 	void			*use_texture;

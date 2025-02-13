@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:46:23 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/13 11:36:41 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/15 19:46:13 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	free_textures(t_data *data)
 	free(data->texture);
 }
 
-static void free_paths(t_data *data)
+static void	free_paths(t_data *data)
 {
 	if (data->texture->no_path)
 		free(data->texture->no_path);
@@ -68,5 +68,6 @@ int	close_game(t_data *data)
 	free(data->image);
 	free(data->mlx);
 	free(data->wall);
+	free(data->ray);
 	exit(0);
 }

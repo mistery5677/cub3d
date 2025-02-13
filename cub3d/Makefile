@@ -9,14 +9,14 @@ OBJECTS_DIR		= objects
 INCLUDES		= -Iincludes
 
 SOURCES_FILES	= cub3D.c \
-					draw/draw_textures.c draw/math.c\
+				  draw/draw_textures.c draw/math.c\
 				  errors/close_game.c \
 				  errors/print_error.c \
 				  initialize/init.c \
 				  gameplay/gameplay.c \
 				  gameplay/move_player.c \
 				  render/render.c \
-				  render/raycasting.c \
+				  render/dda_algorithm.c \
 				  debug_function/debug.c \
 				  parser/parse_map_file.c \
 				  parser/parse_texture.c \
