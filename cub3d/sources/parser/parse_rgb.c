@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:50:20 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/05 16:10:53 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:30:58 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static int	assign_values(t_parse *parse, char **rgb_arr)
 	out_of_range = false;
 	while (rgb_arr[++i])
 	{
-		trimmed = ft_strtrim(rgb_arr[i], SPACES);
-		if (!trimmed || *trimmed == '\0')
+		trimmed = ft_strtrim(rgb_arr[i], SPACES); 
+		if (!trimmed || *trimmed == '\0' || ft_strchr(trimmed, ' '))
 			return (free(trimmed), print_error("RGB", RGB_MSG, ERR_FAIL));
 		parse->rgb[i] = ft_atoi_no_oflow(rgb_arr[i], &out_of_range);
 		free(trimmed);

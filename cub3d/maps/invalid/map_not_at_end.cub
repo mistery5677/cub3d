@@ -1,14 +1,14 @@
-NO tx/NORTH.xpm
+NO tx/N.xpm
 
 
 
-SO tx/NORTH.xpm
+SO tx/N.xpm
 
 
 
 
 
-WE tx/NORTH.xpm
+WE tx/N.xpm
 
 
 
@@ -24,4 +24,4 @@ C 0,0,200
 10000000000100000000001
 11111111111111111111111
 
-EA tx/NORTH.xpm
+EA tx/N.xpm

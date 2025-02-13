@@ -1,7 +1,7 @@
-NO tx/NORTH.xpm
-SO tx/NORTH.xpm
+NO tx/N.xpm
+SO tx/N.xpm
 WE tx/lisboa.xpm
-EA tx/NORTH.xpm
+EA tx/N.xpm
 
 F 0,0,200
 C 0,0,200

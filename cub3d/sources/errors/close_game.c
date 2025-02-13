@@ -39,7 +39,7 @@ static void	free_textures(t_data *data)
 	free(data->texture);
 }
 
-static void free_paths(t_data *data)
+static void	free_paths(t_data *data)
 {
 	if (data->texture->no_path)
 		free(data->texture->no_path);

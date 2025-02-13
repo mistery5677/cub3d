@@ -14,7 +14,7 @@
 # define MACRO_H
 # include "cub.h"
 
-#define _USE_MATH_DEFINES
+# define _USE_MATH_DEFINES
 
 # define ESC 65307
 # define LEFT 65361
