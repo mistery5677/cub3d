@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:42:53 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/12 19:27:41 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/13 15:47:40 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,20 @@ static bool	are_near_valid(char **map, int y, int x)
  * NW(y+1,x-1) N(y+1,x) NE(y+1,x+1) E(y,x+1)
  * SE(y-1,x+1)S(y-1,x) SW(y-1,x-1) W(y,x-1)
  */
-int	handle_floor_tile(t_data *data, t_map *vars, char **map, int y, int x)
+int	handle_floor_tile(t_data *data, t_map *vars, int y, int x)
 {
-	if (ft_strchr(PLCHR, map[y][x]) && vars->player_found)
+	if (ft_strchr(PLCHR, vars->matrix[y][x]) && vars->player_found)
 		return (print_error("Map", PLAYS_MSG, ERR_FAIL));
-	else if (ft_strchr(PLCHR, map[y][x]))
+	else if (ft_strchr(PLCHR, vars->matrix[y][x]))
 	{
 		data->player->x_pst = (x * BLOCK) + (BLOCK / 2);
 		data->player->y_pst = (y * BLOCK) + (BLOCK / 2);
-		printf("PLAYER DIRECTION:%c\n", map[y][x]);
-		set_player_starting_angle(data, map[y][x]);
-		printf("Player pos: x=%d  y=%d\n", x, y);
+		set_player_starting_angle(data, vars->matrix[y][x]);
 		vars->player_found = true;
 	}
-			// ! set player starting angle here data->player->angle
 	if (do_near_exist(vars, y, x) == false)
 		return (print_error("Map", FLR_MSG, ERR_FAIL));
-	if (are_near_valid(map, y, x) == false)
+	if (are_near_valid(vars->matrix, y, x) == false)
 		return (print_error("Map", FLR_MSG, ERR_FAIL));
 	return (0);
 }
@@ -92,7 +89,7 @@ int	fill_map(t_data *data, t_map *vars, char **map)
 				return (print_error("Map:", UNX_MSG, ERR_FAIL));
 			if (ft_strchr(FLCHR, map[y][x]))
 			{
-				if (handle_floor_tile(data, vars, map, y, x) == ERR_FAIL)
+				if (handle_floor_tile(data, vars, y, x) == ERR_FAIL)
 					return (ERR_FAIL);
 			}
 		}

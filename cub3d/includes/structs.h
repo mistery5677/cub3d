@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:17:37 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/16 00:52:19 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/17 13:00:25 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ typedef enum e_txt_type
 	WE,
 	F,
 	C
-}				t_txt_type;
+}					t_txt_type;
 
 typedef struct s_parse
 {
-	int			rgb[3];
-}				t_parse;
+	int				rgb[3];
+}					t_parse;
 
 typedef struct s_wall
 {
@@ -38,7 +38,7 @@ typedef struct s_wall
 	int				side;
 	int				start_y;
 	int				end_y;
-}	t_wall;
+}					t_wall;
 
 typedef struct s_texture
 {
@@ -59,7 +59,7 @@ typedef struct s_texture
 	int				bpp;
 	int				size_line;
 	int				endian;
-}	t_texture;
+}					t_texture;
 
 typedef struct s_map
 {
@@ -67,7 +67,7 @@ typedef struct s_map
 	int				height;
 	int				width;
 	bool			player_found;
-}	t_map;
+}					t_map;
 
 typedef struct s_player
 {
@@ -84,7 +84,7 @@ typedef struct s_player
 	bool			key_right;
 	bool			left_rotate;
 	bool			right_rotate;
-}	t_player;
+}					t_player;
 
 /* DEBUG */
 typedef struct s_image_debug
@@ -96,7 +96,7 @@ typedef struct s_image_debug
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
-}	t_image_debug;
+}					t_image_debug;
 
 typedef struct s_image
 {
@@ -137,6 +137,6 @@ typedef struct s_data
 	void			*use_texture;
 	int				fov;
 	// int				active; // 0 = nothing 1 = image 2 = window 3 = display
-}	t_data;
+}					t_data;
 
 #endif

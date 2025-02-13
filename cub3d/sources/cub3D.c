@@ -1,17 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/13 15:49:07 by thopgood          #+#    #+#             */
+/*   Updated: 2025/02/14 15:47:05 by thopgood         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
 int	main(int argc, char **argv)
 {
-	static t_data data;
+	static t_data	data;
 
 	initialize_data(&data);
 	if (!is_map_valid(&data, argc, argv))
 		return (close_game(&data), EXIT_FAILURE);
-	print_matrix(data.map->matrix);
-	printf("north path %s\n", data.texture->no_path);
-	printf("east path %s\n", data.texture->ea_path);
-	printf("south path %s\n", data.texture->so_path);
-	printf("west path %s\n", data.texture->we_path);
 	if (DEBUG == 1)
 	{
 		create_window(&data);
@@ -24,5 +31,14 @@ int	main(int argc, char **argv)
 		gameplay(&data);
 		mlx_loop(data.mlx);
 	}
-	return(0);
-} 
+
+	// * Would this make more sense?
+	// create_window(&data);
+	// gameplay(&data);
+	// if (DEBUG == 1)
+	// 	debug_window(&data);
+	// else
+	// 	mlx_loop(data.mlx);
+
+	return (0);
+}

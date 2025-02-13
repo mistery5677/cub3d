@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:10:45 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/07 13:45:08 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:51:42 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,5 @@ int	trim_map(t_data *data)
 		return (ERR_FAIL);
 	data->map->height = ft_array_size(data->map->matrix);
 	data->map->width = ft_strlen(data->map->matrix[0]);
-	printf("height: %d\n", data->map->height);
-	printf("width: %d\n", data->map->width);
 	return (0);
 }

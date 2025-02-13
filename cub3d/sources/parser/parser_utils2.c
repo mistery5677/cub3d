@@ -6,13 +6,13 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:55:56 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/12 14:28:51 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:50:33 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void set_player_starting_angle(t_data *data, char c)
+void	set_player_starting_angle(t_data *data, char c)
 {
 	if (c == 'N')
 		data->player->angle = 3 * (PI / 2);
@@ -32,7 +32,6 @@ bool	is_valid_char(char c)
 bool	isspace_not_nl(char c)
 {
 	return (ft_strchr(" \t\f\r\v", c));
-	// return (c == ' ' || c == '\t' || c == '\f' || c == '\r' || c == '\v');
 }
 
 int	print_matrix(char **matrix)
@@ -62,50 +61,5 @@ int	last_usable_char_index(char *str)
 	end = ft_strlen(str) - 1;
 	while (end >= 0 && ft_isspace(str[end]))
 		end--;
-	// printf("last char: %d\n",end);
 	return (end);
 }
-
-// bool	is_empty_line(char *line)
-// {
-// 	while (*line)
-// 	{
-// 		if (!ft_isspace(*line))
-// 			return (false);
-// 		line++;
-// 	}
-// 	return (true);
-// }
-
-//
-/** @brief Ignores leading and trailing empty lines. Returns true if empty lines
-//  * 	are found within content.
-//  */
-// bool has_empty_internal_lines(char **matrix, int num_lines)
-// {
-//     bool found_non_empty_line;
-// 	int i;
-// 	int j;
-
-// 	found_non_empty_line = false;
-// 	i = -1;
-// 	while (++i < num_lines)
-// 	{
-// 		if (is_empty_line(matrix[i]))
-// 		{
-// 			if (found_non_empty_line)
-// 			{
-// 				j = i;
-// 				while (++j < num_lines)
-// 				{
-// 					if (!is_empty_line(matrix[j]))
-// 						return (true);
-// 				}
-// 				return (false);
-// 			}
-// 		}
-// 		else
-// 			found_non_empty_line = true;
-// 	}
-// 	return (false);
-// }
