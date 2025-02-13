@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
+/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 20:43:14 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/13 11:19:31 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static int	load_textures(t_data *data, t_texture *tx)
 
 	tx_w = &(tx)->width;
 	tx_h = &(tx)->height;
-	tx->no_texture = mlx_xpm_file_to_image(data->mlx, "tx/N.xpm", tx_w, tx_h);
-	tx->so_texture = mlx_xpm_file_to_image(data->mlx, "tx/S.xpm", tx_w, tx_h);
-	tx->we_texture = mlx_xpm_file_to_image(data->mlx, "tx/WE.xpm", tx_w, tx_h);
-	tx->ea_texture = mlx_xpm_file_to_image(data->mlx, "tx/E.xpm", tx_w, tx_h);
+	tx->no_texture = mlx_xpm_file_to_image(data->mlx, "tx/PN.xpm", tx_w, tx_h);
+	tx->so_texture = mlx_xpm_file_to_image(data->mlx, "tx/PS.xpm", tx_w, tx_h);
+	tx->we_texture = mlx_xpm_file_to_image(data->mlx, "tx/GW.xpm", tx_w, tx_h);
+	tx->ea_texture = mlx_xpm_file_to_image(data->mlx, "tx/GE.xpm", tx_w, tx_h);
 	if (!data->texture->no_texture || !data->texture->so_texture
 		|| !data->texture->we_texture || !data->texture->ea_texture
 		|| !data->texture->f_texture || !data->texture->c_texture)
