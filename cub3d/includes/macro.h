@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macro.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:16:22 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/13 10:13:29 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/13 20:12:43 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MACRO_H
 # include "cub.h"
 
-#define _USE_MATH_DEFINES
+# define _USE_MATH_DEFINES
 
 # define ESC 65307
 # define LEFT 65361

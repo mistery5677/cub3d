@@ -16,7 +16,6 @@ SOURCES_FILES	= cub3D.c \
 				  gameplay/gameplay.c \
 				  gameplay/move_player.c \
 				  render/render.c \
-				  render/raycasting.c \
 				  render/dda_algorithm.c \
 				  debug_function/debug.c \
 				  parser/parse_map_file.c \
