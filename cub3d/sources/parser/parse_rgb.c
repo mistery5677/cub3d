@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:50:20 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/05 16:10:53 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:43:06 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	arr_to_hex(int red, int green, int blue)
 {
 	int	rgb;
-
+	
 	rgb = (red << 16) | (green << 8) | blue;
 	return (rgb);
 }
