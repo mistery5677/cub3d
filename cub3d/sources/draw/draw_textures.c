@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:05:03 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/13 20:18:04 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/14 01:33:19 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,63 @@ static void	draw_floor_ceiling(t_data *data, int i, int start_y, int end_y)
 
 // static void process_math()
 
+// static void	draw_walls(t_data *dt, t_texture *tx, int i, int tex_x)
+// {
+// 	float	step;
+// 	float	tex_pos;
+// 	int		converter_base;
+// 	int		tex_scale;
+// 	int		tex_y;
+
+// 	tex_scale = (64 * 256) / dt->wall->height;
+// 	step = 64.0f / dt->wall->height;
+// 	tex_pos = (dt->wall->start_y - (HEIGHT / 2)
+// 			+ (dt->wall->height / 2)) * step;
+// 	converter_base = -HEIGHT * 128 + dt->wall->height * 128;
+// 	tx->img = mlx_get_data_addr(dt->wall->texture,
+// 			&(tx)->bpp, &(tx)->size_line, &(tx)->endian);
+// 	while (dt->wall->start_y < dt->wall->end_y)
+// 	{
+// 		tex_y = ((dt->wall->start_y * 256 + converter_base) * tex_scale) / 256;
+// 		if (tex_y < 0)
+// 			tex_y = 0;
+// 		tex_y = (int)tex_pos & 63;
+// 		tx->color = get_pixel_color(dt, tx->img, tex_x, tex_y);
+// 		put_pixel(i, dt->wall->start_y, tx->color, dt);
+// 		tex_pos += step;
+// 		dt->wall->start_y++;
+// 	}
+// }
+
 static void	draw_walls(t_data *dt, t_texture *tx, int i, int tex_x)
 {
 	float	step;
 	float	tex_pos;
-	int		converter_base;
-	int		tex_scale;
 	int		tex_y;
+	int 	y;
 
-	tex_scale = (64 * 256) / dt->wall->height;
-	step = 64.0f / dt->wall->height;
-	tex_pos = (dt->wall->start_y - (HEIGHT / 2)
-			+ (dt->wall->height / 2)) * step;
-	converter_base = -HEIGHT * 128 + dt->wall->height * 128;
+	step = (float)BLOCK / dt->wall->height;
+	if (dt->wall->start_y < 0)
+		tex_pos = -dt->wall->start_y * step;
+	else
+		tex_pos = 0;
+
 	tx->img = mlx_get_data_addr(dt->wall->texture,
 			&(tx)->bpp, &(tx)->size_line, &(tx)->endian);
-	while (dt->wall->start_y < dt->wall->end_y)
+	if (dt->wall->start_y < 0)
+		y = 0;
+	else
+		y = dt->wall->start_y;
+	while (y < dt->wall->end_y && y < HEIGHT)
 	{
-		tex_y = ((dt->wall->start_y * 256 + converter_base) * tex_scale) / 256;
-		if (tex_y < 0)
-			tex_y = 0;
-		tex_y = (int)tex_pos & 63;
+		tex_y = ((int)tex_pos) % BLOCK;
 		tx->color = get_pixel_color(dt, tx->img, tex_x, tex_y);
-		put_pixel(i, dt->wall->start_y, tx->color, dt);
+		put_pixel(i, y, tx->color, dt);
 		tex_pos += step;
-		dt->wall->start_y++;
+		y++;
 	}
 }
+
 
 void	draw_textures(t_data *data, int i, float ray_x, float ray_y)
 {
