@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:48 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/14 19:51:52 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/15 12:21:11 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,15 @@ static void	choose_wall_tex(t_data *data, int i, float ray_x, float ray_y)
 	draw_textures(data, i, ray_x, ray_y);
 }
 
-static void	init_ray(t_ray *ray, float start_x)
+static void	init_ray(t_ray *ray, t_player *player, float start_x, int i)
 {
-	ray->cos_angle = cos(start_x);
-	ray->sin_angle = sin(start_x);
+	float camera_x;
+	float ray_angle;
+	
+	camera_x = (2.0f * i / WIDTH) - 1.0f;  // Normalize to range [-1, 1]
+	ray_angle = player->angle + atan(camera_x * tan(FOV / 2));
+	ray->cos_angle = cos(ray_angle);
+	ray->sin_angle = sin(ray_angle);
 	ray->ray_dir_x = ray->cos_angle;
 	ray->ray_dir_y = ray->sin_angle;
 	ray->delta_x = fabs(1 / ray->ray_dir_x);
@@ -73,7 +78,7 @@ float	dda_algorithm(t_data *data, t_ray *ray, float start_x, int i)
 
 	map_x = (int)data->player->x_pst;
 	map_y = (int)data->player->y_pst;
-	init_ray(ray, start_x);
+	init_ray(ray, data->player, start_x, i);
 	init_dir_dist(ray, data->player, map_x, map_y);
 	while (data->map->matrix[map_y / BLOCK][map_x / BLOCK] != '1')
 	{

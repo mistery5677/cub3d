@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:05:03 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/14 01:33:19 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/15 12:17:47 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	draw_textures(t_data *data, int i, float ray_x, float ray_y)
 	int	tex_x;
 
 	data->wall->distance = fixed_calculate_distance(ray_x, ray_y, data);
-	data->wall->height = (BLOCK / data->wall->distance) * (WIDTH / 2);
+	data->wall->height = (BLOCK * HEIGHT) / (data->wall->distance * tan(FOV / 2));
 	data->wall->start_y = (HEIGHT - data->wall->height) / 2;
 	data->wall->end_y = data->wall->start_y + data->wall->height;
 	tex_x = verify_side(data, ray_x, ray_y);

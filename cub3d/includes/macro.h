@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:16:22 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/13 20:12:43 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/15 12:10:52 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include "cub.h"
 
 # define _USE_MATH_DEFINES
+
+# define FOV (60.0 * M_PI / 180.0) 
 
 # define ESC 65307
 # define LEFT 65361
