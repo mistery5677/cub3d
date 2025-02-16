@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:48 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/15 19:59:31 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/16 19:43:30 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ static void	choose_wall_tex(t_data *data, int i, float ray_x, float ray_y)
 	draw_textures(data, i, ray_x, ray_y);
 }
 
+/** Camera_x is to normalize the current pixel column on the
+ * screen and set a range between -1 and 1
+ * Ray_angle, is the angle that the ray is being cast, acoording
+ with the x collumn pixel
+ *  The function fabs prevents of getting negative values, and
+ the 1 / ray_dir, is to determine how much the ray advances
+ per grid step.
+*/
 static void	init_ray(t_ray *ray, t_player *player, int i)
 {
 	float	camera_x;
@@ -46,7 +54,19 @@ static void	init_ray(t_ray *ray, t_player *player, int i)
 	ray->delta_y = fabs(1 / ray->ray_dir_y);
 }
 
-/** Step direction and initial side distance */
+/** Step direction and initial side distance 
+ * If ray_dir_x < 0, the player is moving left
+ * If ray_dir_x > 0, the player is moving right
+ * If ray_dir_y < 0, the player is moving up
+ * If ray_dir_y > 0, the player is moving down
+ * Ray side_dist difines the distance that the ray travels to reach
+ * the first grid boundary in X or Y;
+ * 
+ * Difference between delta and side
+ * Delta, its the distance the ray has to travel one full grid cell
+ * Side_dist, represents the distance from the player to the first grid
+ * boundary
+*/
 static void	init_dir_dist(t_ray *ray, t_player *player, int map_x, int map_y)
 {
 	if (ray->ray_dir_x < 0)
@@ -71,6 +91,11 @@ static void	init_dir_dist(t_ray *ray, t_player *player, int map_x, int map_y)
 	}
 }
 
+/** dda (Digital Differential Analyzer)
+ * Raycasting algorithm that checks grid by grid, until
+ * hits a wall, and we use delta (distance to step in the next grid)
+ * to increment in side_dist.
+ */
 float	dda_algorithm(t_data *data, t_ray *ray, int i)
 {
 	int	map_x;
