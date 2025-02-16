@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:23:18 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/13 15:55:20 by miafonso         ###   ########.fr       */
+/*   Updated: 2025/02/15 20:04:25 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,37 +48,16 @@ void	clear_image(t_data *data)
 
 int	draw_loop(t_data *data)
 {
-	float	fraction;
-	float	start_x;
 	int		i;
 
 	i = 0;
-	fraction = PI / 3 / WIDTH;
-	start_x = data->player->angle - PI / 6;
 	move_player(data);
 	clear_image(data);
 	while (i < WIDTH)
 	{
-		dda_algorithm(data, data->ray, start_x, i);
-		start_x += fraction;
+		dda_algorithm(data, data->ray, i);
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->image->img, 0, 0);
 	return (0);
 }
-
-// void render(t_data *data)
-// {
-//     float angle;
-//     float distance;
-//     int x;
-
-//     x = 0;
-//     while (x < WIDTH)
-//     {
-//         angle = data->player->angle - 
-//				data->fov / 2 + (float)x / WIDTH * data->fov;
-//         distance = cat_ray(angle);
-//         distance *= cos(data->player->angle - angle);
-//     }
-// }

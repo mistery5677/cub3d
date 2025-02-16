@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:46:23 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/14 13:14:12 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/15 19:46:13 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	free_textures(t_data *data)
 	free(data->texture);
 }
 
-static void free_paths(t_data *data)
+static void	free_paths(t_data *data)
 {
 	if (data->texture->no_path)
 		free(data->texture->no_path);

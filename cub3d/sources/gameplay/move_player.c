@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 19:50:08 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/12 23:22:22 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/16 00:52:13 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,13 @@ static void	turn_player_camera(t_data *data)
 		data->player->angle += 2 * PI;
 }
 
+
+
 static void	move_player_camera(t_data *data, float cos_angle, float sin_angle)
 {
 	float	speed;
 
-	speed = data->player->speed;
+	set_speed(data->player, &speed);
 	if (data->player->key_up)
 	{
 		data->player->x_pst += cos_angle * speed;

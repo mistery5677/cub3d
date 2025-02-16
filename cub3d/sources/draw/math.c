@@ -6,11 +6,30 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:23:59 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/14 19:48:14 by mistery576       ###   ########.fr       */
+/*   Updated: 2025/02/16 00:51:40 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
+
+void set_speed(t_player *player, float *speed)
+{
+	int moves;
+
+	moves = 0;
+	if (player->key_up)
+		moves++;
+	if (player->key_down)
+		moves++;
+	if (player->key_right)
+		moves++;
+	if (player->key_left)
+		moves++;
+	if (moves != 1)
+		*speed = player->speed / 1.5;
+	else
+		*speed = player->speed;
+}
 
 /* Gets the column of the texture that we want to print */
 int	verify_side(t_data *data, float ray_x, float ray_y)
