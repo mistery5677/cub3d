@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/17 14:53:10 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:40:11 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static int	load_textures(t_data *data, t_texture *tx)
 static void	initialize_player(t_data *data)
 {
 	data->player->angle = PI / 2;
-	data->player->speed = 2;
-	data->player->angle_speed = 0.015;
+	data->player->speed = 4;
+	data->player->angle_speed = 0.03;
 }
 
 void	initialize_data(t_data *data)
@@ -79,10 +79,10 @@ int	create_window(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (print_error("INIT", strerror(errno), ENOMEM), close_game(data));
+	check_win(data);
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!data->win)
 		return (print_error("INIT", strerror(errno), ENOMEM), close_game(data));
-	check_win(data);
 	image->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!image->img)
 		return (print_error("INIT", strerror(errno), ENOMEM), close_game(data));

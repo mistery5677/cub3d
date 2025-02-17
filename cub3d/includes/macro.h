@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:16:22 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/17 14:55:13 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:04:17 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define BLOCK 64
 # define PLAYER_SIZE 6
 
-# define WIDTH 150000
+# define WIDTH 1280
 # define HEIGHT 720
 
 # define PURPLE 0x660033

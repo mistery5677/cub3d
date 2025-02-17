@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:49:07 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/17 14:50:09 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:26:30 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int argc, char **argv)
 	if (!is_map_valid(&data, argc, argv))
 		return (close_game(&data), EXIT_FAILURE);
 	create_window(&data);
-	
 	gameplay(&data);
 	if (DEBUG == 1) // !
 		debug_window(&data);

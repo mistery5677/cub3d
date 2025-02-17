@@ -35,10 +35,10 @@ OBJECTS			= $(patsubst $(SOURCES_DIR)/%.c,$(OBJECTS_DIR)/%.o,$(SOURCES))
 
 NAME			= cub3D
 
-CC				= cc -g -O0
+CC				= cc
 RM				= rm -rf
 
-CFLAGS			= -Wall -Wextra -Werror $(INCLUDES)
+CFLAGS			= -Wall -Wextra -Werror $(INCLUDES) # -g -O0 -fsanitize=address
 MLXFLAGS		= -L. -lXext -L. -lX11
 
 $(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c

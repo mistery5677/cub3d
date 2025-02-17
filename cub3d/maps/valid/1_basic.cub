@@ -3,8 +3,8 @@ SO tx/PS.xpm
 WE tx/GW.xpm
 EA tx/GE.xpm
 
-F 0,255,255
-C 255, 0, 0
+F 0,128,128
+C 0, 51, 102
 
 11111
 10001

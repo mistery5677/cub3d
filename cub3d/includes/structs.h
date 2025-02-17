@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:17:37 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/17 13:00:25 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:36:30 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ typedef struct s_data
 	void			*win;
 	void			*use_texture;
 	int				fov;
-	// int				active; // 0 = nothing 1 = image 2 = window 3 = display
 }					t_data;
 
 #endif
