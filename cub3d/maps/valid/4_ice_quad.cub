@@ -1,10 +1,10 @@
-NO tx/N.xpm
-SO tx/N.xpm
-WE tx/N.xpm
-EA tx/N.xpm
+NO tx/ice/NI.xpm
+SO tx/ice/SI.xpm
+EA tx/ice/EI.xpm
+WE tx/ice/WI.xpm
 
-F 0,0,200
-C 0,0,200
+F 0,97,167
+C 204,233,251
 
 11111     11111
 100011111110001
