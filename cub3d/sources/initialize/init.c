@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/17 14:21:22 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:22:12 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	initialize_data(t_data *data)
 	data->image = ft_calloc(1, sizeof(t_image));
 	data->ray = ft_calloc(1, sizeof(t_ray));
 	data->wall = ft_calloc(1, sizeof(t_wall));
-	if (!data->texture || !data->map || !data->player || !data->image || !data->wall || !data->ray)
+	if (!data->texture || !data->map || !data->player || !data->image
+		|| !data->wall || !data->ray)
 	{
 		free(data->map);
 		free(data->player);
@@ -52,7 +53,7 @@ void	initialize_data(t_data *data)
 		free(data->image);
 		free(data->wall);
 		free(data->ray);
-		exit (print_error(NULL, strerror(errno), ENOMEM));
+		exit(print_error(NULL, strerror(errno), ENOMEM));
 	}
 	initialize_player(data);
 }
@@ -65,7 +66,7 @@ int	create_window(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (print_error("INIT", strerror(errno), ENOMEM), close_game(data));
-	//mlx_get_screen_size // ! might be useful to auto set zoom level
+	// mlx_get_screen_size // ! might be useful to auto set zoom level
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!data->win)
 		return (print_error("INIT", strerror(errno), ENOMEM), close_game(data));

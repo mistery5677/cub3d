@@ -12,9 +12,9 @@
 
 #include "../../includes/cub.h"
 
-void set_speed(t_player *player, float *speed)
+void	set_speed(t_player *player, float *speed)
 {
-	int moves;
+	int	moves;
 
 	moves = 0;
 	if (player->key_up)
@@ -43,7 +43,7 @@ int	verify_side(t_data *data, float ray_x, float ray_y)
 	else
 		wall_x = ray_x;
 	wall_x /= BLOCK;
-	wall_x -= floor (wall_x);
+	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * (float)64);
 	if ((data->wall->side == VERTICAL && ray_x < data->player->x_pst)
 		|| (data->wall->side == HORIZONTAL && ray_y > data->player->y_pst))

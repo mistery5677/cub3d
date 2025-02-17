@@ -114,10 +114,10 @@ int		check_line(t_data *data, char *line, int x);
 ██╔══██╗██╔══╝  ██║╚██╗██║██║  ██║██╔══╝  ██╔══██╗
 ██║  ██║███████╗██║ ╚████║██████╔╝███████╗██║  ██║
  */
-float			dda_algorithm(t_data *data, t_ray *ray, int i);
-void			put_pixel(int x, int y, int color, t_data *data);
-void			clear_image(t_data *data);
-int				draw_loop(t_data *data);
+float	dda_algorithm(t_data *data, t_ray *ray, int i);
+void	put_pixel(int x, int y, int color, t_data *data);
+void	clear_image(t_data *data);
+int		draw_loop(t_data *data);
 
 /**
 ████████╗███████╗██╗  ██╗████████╗██╗   ██╗██████╗ ███████╗███████╗
@@ -127,10 +127,10 @@ int				draw_loop(t_data *data);
 		██║   ███████╗██╔╝ ██╗   ██║   ╚██████╔╝██║  ██║███████╗███████║
 		╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
  */
-float			fixed_calculate_distance(float x2, float y2, t_data *data);
-void 			set_speed(t_player *player, float *speed);
-void			draw_textures(t_data *data, int i, float ray_x, float ray_y);
-int				verify_side(t_data *data, float ray_x, float ray_y);
+float	fixed_calculate_distance(float x2, float y2, t_data *data);
+void	set_speed(t_player *player, float *speed);
+void	draw_textures(t_data *data, int i, float ray_x, float ray_y);
+int		verify_side(t_data *data, float ray_x, float ray_y);
 
 /*
 ██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗

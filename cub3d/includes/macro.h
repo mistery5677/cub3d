@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:16:22 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/17 13:00:14 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:28:20 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 # define MACRO_H
 # include "cub.h"
 
-# define _USE_MATH_DEFINES
-
-# define FOV (60.0 * M_PI / 180.0) 
+# define FOV 1.047197551
 
 # define ESC 65307
 # define LEFT 65361
