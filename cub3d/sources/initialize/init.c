@@ -6,11 +6,24 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/17 14:22:12 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:53:10 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+void	check_win(t_data *data)
+{
+	int	size_x;
+	int	size_y;
+
+	mlx_get_screen_size(data->mlx, &size_x, &size_y);
+	if (WIDTH > size_x || HEIGHT > size_y)
+	{
+		print_error("Window", WIN_MSG, ENOMEM);
+		close_game(data);
+	}
+}
 
 static int	load_textures(t_data *data, t_texture *tx)
 {
@@ -66,10 +79,10 @@ int	create_window(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (print_error("INIT", strerror(errno), ENOMEM), close_game(data));
-	// mlx_get_screen_size // ! might be useful to auto set zoom level
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!data->win)
 		return (print_error("INIT", strerror(errno), ENOMEM), close_game(data));
+	check_win(data);
 	image->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!image->img)
 		return (print_error("INIT", strerror(errno), ENOMEM), close_game(data));

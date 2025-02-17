@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:42:53 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/13 15:47:40 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:39:02 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	fill_map(t_data *data, t_map *vars, char **map)
 		while (map[y][++x])
 		{
 			if (!is_valid_char(map[y][x]))
-				return (print_error("Map:", UNX_MSG, ERR_FAIL));
+				return (print_error("Map", UNX_MSG, ERR_FAIL));
 			if (ft_strchr(FLCHR, map[y][x]))
 			{
 				if (handle_floor_tile(data, vars, y, x) == ERR_FAIL)
