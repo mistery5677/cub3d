@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:06:19 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/17 15:40:11 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:25:29 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static int	load_textures(t_data *data, t_texture *tx)
 	if (!data->texture->no_texture || !data->texture->so_texture
 		|| !data->texture->we_texture || !data->texture->ea_texture)
 		return (print_error("Textures", LOAD_MSG, ENOMEM), -1);
+	tx->c_texture = -1;
+	tx->n_texture = -1;
 	return (0);
 }
 

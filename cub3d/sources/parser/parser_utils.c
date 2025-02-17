@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:55:56 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/08 12:07:14 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:28:22 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	is_line_only_spaces(char *line)
 
 bool	are_textures_parsed(t_texture *t)
 {
-	return (t->c_texture && t->f_texture && t->no_path && t->ea_path
+	return (t->c_texture != -1 && t->f_texture != -1 && t->no_path && t->ea_path
 		&& t->so_path && t->we_path);
 }
 
