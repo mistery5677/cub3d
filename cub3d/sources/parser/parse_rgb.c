@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:50:20 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/17 13:00:42 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:16:28 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	arr_to_hex(int red, int green, int blue)
 {
 	int	rgb;
-	
+
 	rgb = (red << 16) | (green << 8) | blue;
 	return (rgb);
 }
@@ -58,7 +58,7 @@ static int	assign_values(t_parse *parse, char **rgb_arr)
 	out_of_range = false;
 	while (rgb_arr[++i])
 	{
-		trimmed = ft_strtrim(rgb_arr[i], SPACES); 
+		trimmed = ft_strtrim(rgb_arr[i], SPACES);
 		if (!trimmed || *trimmed == '\0' || ft_strchr(trimmed, ' '))
 			return (free(trimmed), print_error("RGB", RGB_MSG, ERR_FAIL));
 		parse->rgb[i] = ft_atoi_no_oflow(rgb_arr[i], &out_of_range);

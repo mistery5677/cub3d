@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:19:01 by miafonso          #+#    #+#             */
-/*   Updated: 2025/02/13 15:44:49 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:17:52 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	parse_map_file(t_data *data, char *path)
 		free(curr_line);
 	}
 	close(fd);
-	// second part data->map might be weird // ! I think it's fixed
 	if (!are_textures_parsed(data->texture) || !data->map->matrix)
 		return (print_error("File", MIS_MSG, ERR_FAIL));
 	return (0);

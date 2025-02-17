@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:10:37 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/13 15:50:44 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:13:27 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	parse_texture(t_data *data, char *line, t_txt_type type)
 	int		fd;
 
 	if (!is_first_occurrence(data, type))
-		return (print_error("Texture", DUP_MSG, ERR_FAIL)); // ! TEST THIS
+		return (print_error("Texture", DUP_MSG, ERR_FAIL));
 	path = get_texture_path(line + 2);
 	if (!path)
 		return (print_error("Texture", NOFILE_MSG, ERR_FAIL));
@@ -68,6 +68,6 @@ int	parse_texture(t_data *data, char *line, t_txt_type type)
 	if (fd < 0)
 		return (free(path), print_error("Texture", strerror(errno), ERR_FAIL));
 	close(fd);
-	add_texture_to_struct(data, type, path); // ! TEST THIS
+	add_texture_to_struct(data, type, path);
 	return (0);
 }

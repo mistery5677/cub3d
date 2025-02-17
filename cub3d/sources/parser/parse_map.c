@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:14:45 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/13 15:49:58 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:15:23 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ char	*map_to_str(t_data *data, int fd, char *line)
 		return (print_error("Map", strerror(errno), -1), NULL);
 	while (get_next_line(fd, &line))
 	{
-		backup = ft_strdup(str_matrix); // !
+		backup = ft_strdup(str_matrix);
 		if (!backup)
 			return (free(str_matrix), free(line), print_error("Map",
 					strerror(errno), -1), NULL);
 		free(str_matrix);
-		str_matrix = ft_strjoin(backup, line); // !
+		str_matrix = ft_strjoin(backup, line);
 		if (!str_matrix)
 			return (free(backup), free(line), print_error("Map",
 					strerror(errno), -1), NULL);
