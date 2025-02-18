@@ -28,7 +28,6 @@ SOURCES_FILES   = cub3D.c \
                   parser/parser_utils.c \
                   parser/parser_utils2.c \
                   parser/atoi_no_oflow.c
-#   parser/split_incl_nl.c
 
 SOURCES         = $(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
 OBJECTS         = $(patsubst $(SOURCES_DIR)/%.c,$(OBJECTS_DIR)/%.o,$(SOURCES))
@@ -39,7 +38,7 @@ NAME            = cub3D
 CC              = cc
 RM              = rm -rf
 
-CFLAGS          = -Wall -Wextra -Werror $(INCLUDES) -MMD -MP # Add -MMD -MP to generate dependencies
+CFLAGS          = -Wall -Wextra -Werror $(INCLUDES) -MMD -MP # -O0 -g -fsanitize=address
 MLXFLAGS        = -L. -lXext -L. -lX11
 
 $(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c
@@ -51,35 +50,38 @@ all: $(NAME)
 bonus: $(NAME)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $(NAME) -lm -O0
+	$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $(NAME) -lm
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_PATH)
+	@$(MAKE) -C $(LIBFT_PATH)
 
 $(MINILIBX):
-	$(MAKE) -C $(MINILIBX_PATH)
+	@$(MAKE) -C $(MINILIBX_PATH)
 
 clean:
-	$(MAKE) -C $(LIBFT_PATH) clean
-	$(MAKE) -C $(MINILIBX_PATH) clean
-	$(RM) $(OBJECTS)
-	$(RM) $(DEPS)
-	$(RM) $(OBJECTS_DIR)
+	@$(MAKE) -C $(LIBFT_PATH) clean
+	@$(MAKE) -C $(MINILIBX_PATH) clean
+	@$(RM) $(OBJECTS)
+	@$(RM) $(DEPS)
+	@$(RM) $(OBJECTS_DIR)
 
 fclean: clean
-	$(MAKE) -C $(LIBFT_PATH) fclean
-	$(RM) $(NAME)
+	@$(MAKE) -C $(LIBFT_PATH) fclean
+	@$(RM) $(NAME)
 
 re: fclean all
 
 valf = $(shell which clear); $(shell which valgrind) --leak-check=full --track-fds=all --track-origins=yes --show-reachable=yes --show-leak-kinds=all -s
 
-minilibx:
+mlx:
 	curl -O https://cdn.intra.42.fr/document/document/25855/minilibx-linux.tgz
 	tar -xzf minilibx-linux.tgz
 	rm minilibx-linux.tgz
 	rm -rf ./libraries/minilibx
 	mv minilibx-linux ./libraries/minilibx
+
+rmlx:
+	rm -rf ./libraries/minilibx
 
 norm:
 	norminette includes/ sources/ libft/
