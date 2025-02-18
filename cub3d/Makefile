@@ -1,51 +1,54 @@
-LIBFT_PATH		= libraries/libft
-LIBFT			= $(LIBFT_PATH)/libft.a
+LIBFT_PATH      = libraries/libft
+LIBFT           = $(LIBFT_PATH)/libft.a
 
-MINILIBX_PATH	= libraries/minilibx
-MINILIBX		= $(MINILIBX_PATH)/libmlx.a
+MINILIBX_PATH   = libraries/minilibx
+MINILIBX        = $(MINILIBX_PATH)/libmlx.a
 
-SOURCES_DIR		= sources
-OBJECTS_DIR		= objects
-INCLUDES		= -Iincludes
+SOURCES_DIR     = sources
+OBJECTS_DIR     = objects
+INCLUDES        = -Iincludes
 
-SOURCES_FILES	= cub3D.c \
-				  draw/draw_textures.c draw/math.c\
-				  errors/close_game.c \
-				  errors/print_error.c \
-				  initialize/init.c \
-				  gameplay/gameplay.c \
-				  gameplay/move_player.c \
-				  render/render.c \
-				  render/dda_algorithm.c \
-				  debug_function/debug.c \
-				  parser/parse_map_file.c \
-				  parser/parse_texture.c \
-				  parser/parse_rgb.c \
-				  parser/parse_map.c \
-				  parser/trim_map.c \
-				  parser/trim_map2.c \
-				  parser/fill_map.c \
-				  parser/parser_utils.c \
-				  parser/parser_utils2.c \
-				  parser/atoi_no_oflow.c
+SOURCES_FILES   = cub3D.c \
+                  draw/draw_textures.c draw/math.c\
+                  errors/close_game.c \
+                  errors/print_error.c \
+                  initialize/init.c \
+                  gameplay/gameplay.c \
+                  gameplay/move_player.c \
+                  render/render.c \
+                  render/dda_algorithm.c \
+                  debug_function/debug.c \
+                  parser/parse_map_file.c \
+                  parser/parse_texture.c \
+                  parser/parse_rgb.c \
+                  parser/parse_map.c \
+                  parser/trim_map.c \
+                  parser/trim_map2.c \
+                  parser/fill_map.c \
+                  parser/parser_utils.c \
+                  parser/parser_utils2.c \
+                  parser/atoi_no_oflow.c
 #   parser/split_incl_nl.c
 
-SOURCES			= $(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
-OBJECTS			= $(patsubst $(SOURCES_DIR)/%.c,$(OBJECTS_DIR)/%.o,$(SOURCES))
+SOURCES         = $(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
+OBJECTS         = $(patsubst $(SOURCES_DIR)/%.c,$(OBJECTS_DIR)/%.o,$(SOURCES))
+DEPS            = $(OBJECTS:.o=.d)
 
-NAME			= cub3D
+NAME            = cub3D
 
-CC				= cc
-RM				= rm -rf
+CC              = cc
+RM              = rm -rf
 
-CFLAGS			= -Wall -Wextra -Werror $(INCLUDES) # -g -O0 -fsanitize=address
-MLXFLAGS		= -L. -lXext -L. -lX11
+CFLAGS          = -Wall -Wextra -Werror $(INCLUDES) -MMD -MP # Add -MMD -MP to generate dependencies
+MLXFLAGS        = -L. -lXext -L. -lX11
 
 $(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
+
+bonus: $(NAME)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $(NAME) -lm -O0
@@ -60,6 +63,7 @@ clean:
 	$(MAKE) -C $(LIBFT_PATH) clean
 	$(MAKE) -C $(MINILIBX_PATH) clean
 	$(RM) $(OBJECTS)
+	$(RM) $(DEPS)
 	$(RM) $(OBJECTS_DIR)
 
 fclean: clean
@@ -85,5 +89,7 @@ val:
 
 valre: re
 	clear; $(valf) ./cub3D $(PATH)
+
+-include $(DEPS)
 
 .PHONY: all clean fclean re

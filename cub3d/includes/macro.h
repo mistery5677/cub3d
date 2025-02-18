@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:16:22 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/17 15:04:17 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:23:50 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
-
-# define PURPLE 0x660033
-# define GREEN 0x00FF00
-# define BLUE 0x6666FF
-# define GREY 0xA0A0A0
-# define PINK 0xFF66B2
 
 # define PI 3.14159265358979323846
 

@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 16:09:24 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/17 14:51:45 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:10:28 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 
 # define SPACES " \t\n\v\f\r"
 # define VALID_CHARS " 10NSEW"
-# define FLCHR "0NSEW"  // xFF = sentinel number, probably not needed
-# define NRCHR "10NSEW" // xFF = sentinel number, probably not needed
+# define FLCHR "0NSEW"
+# define NRCHR "10NSEW"
 # define PLCHR "NSEW"
 
 # define ERR_FAIL -1

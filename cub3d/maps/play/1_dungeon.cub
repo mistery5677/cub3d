@@ -3,8 +3,8 @@ SO tx/dungeon/SD.xpm
 WE tx/dungeon/WED.xpm
 EA tx/dungeon/ED.xpm
 
-F 0, 0, 0
-C 71, 71, 71
+F 10, 11, 10
+C 31, 31, 31
 
 1111111    111111
 100S001    100001

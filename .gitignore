@@ -4,3 +4,4 @@ libraries/minilibx/
 .vscode
 docker*
 cub3d/cub3D
+*.d

@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:27:26 by mistery576        #+#    #+#             */
-/*   Updated: 2025/02/17 13:00:06 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:10:21 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "structs.h"
 # include <fcntl.h>
 # include <linux/types.h>
-// #include <sys/stat.h>
 # include <X11/X.h>
 # include <errno.h>
 # include <math.h>
