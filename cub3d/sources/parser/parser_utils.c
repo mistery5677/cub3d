@@ -6,7 +6,7 @@
 /*   By: thopgood <thopgood@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:55:56 by thopgood          #+#    #+#             */
-/*   Updated: 2025/02/17 20:28:22 by thopgood         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:31:59 by thopgood         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ bool	is_first_occurrence(t_data *data, t_txt_type type)
 	else if (type == WE)
 		return (!data->texture->we_path);
 	else if (type == F)
-		return (!data->texture->f_texture);
+		return (data->texture->f_texture == -1);
 	else if (type == C)
-		return (!data->texture->c_texture);
+		return (data->texture->c_texture == -1);
 	return (false);
 }
